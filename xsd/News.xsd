@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.news.com"
+           xmlns="https://www.news.com"
+           elementFormDefault="qualified">
+    <xs:element name="stories" type="listNews"/>
+    <xs:complexType name="listNews">
+        <xs:sequence>
+            <xs:element name="news" type="newsItem" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="newsItem">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="imgUrl" type="xs:string"/>
+            <xs:element name="originUrl" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="newsId" type="xs:positiveInteger"/>
+    </xs:complexType>
+</xs:schema>

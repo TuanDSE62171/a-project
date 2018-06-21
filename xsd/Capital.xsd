@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.capitals.com"
+           xmlns="https://www.capitals.com"
+           elementFormDefault="qualified">
+    <xs:element name="capitals" type="capitals"/>
+    <xs:complexType name="capitals">
+        <xs:sequence>
+            <xs:element name="capital" type="capitalItem" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="capitalItem">
+        <xs:attribute name="capitalName" type="xs:string"/>
+        <xs:attribute name="countryName" type="xs:string"/>
+        <xs:attribute name="alphaTwoCode" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>

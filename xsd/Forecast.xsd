@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.forecast.com"
+           xmlns="https://www.forecast.com"
+           elementFormDefault="qualified">
+    <xs:element name="weathers" type="weathers"/>
+    <xs:complexType name="weathers">
+        <xs:sequence>
+            <xs:element name="weather" type="weatherItem" maxOccurs="7"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="weatherItem">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="windVelocity" type="xs:string"/>
+            <xs:element name="temp" type="xs:int"/>
+            <xs:element name="icon" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
