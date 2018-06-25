@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.images.com"
+           xmlns="https://www.images.com"
+           elementFormDefault="qualified">
+    <xs:element name="images" type="images"/>
+    <xs:complexType name="images">
+        <xs:sequence>
+            <xs:element name="image" type="image" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="image">
+        <xs:sequence>
+            <xs:element name="iso2Code" type="xs:string"/>
+            <xs:element name="width" type="xs:string"/>
+            <xs:element name="height" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

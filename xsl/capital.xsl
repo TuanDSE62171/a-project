@@ -18,10 +18,10 @@
                         <xsl:attribute name="countryName">
                             <xsl:value-of select="td[1]/a/text()"/>
                         </xsl:attribute>
-                        <xsl:attribute name="capitalName">
+                        <xsl:attribute name="name">
                             <xsl:value-of select="td[2]/text()"/>
                         </xsl:attribute>
-                        <xsl:attribute name="alphaTwoCode">
+                        <xsl:attribute name="iso2Code">
                             <xsl:value-of select="td[4]/text()"/>
                         </xsl:attribute>
                     </xsl:element>

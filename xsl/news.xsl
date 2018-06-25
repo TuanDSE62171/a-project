@@ -12,19 +12,22 @@
     <xsl:output method="xml" indent="yes" version="1.0"/>
     <xsl:template match="/">
         <xsl:element name="stories">
-            <xsl:for-each select="div/div[@class='media' and div[@class='media-left']]">
+            <xsl:for-each select="//div[@class='w-body list']/div[@class='media' and div[1][@class='media-left']]">
                 <xsl:element name="news">
-                    <xsl:element name="postName">
-                        <xsl:value-of select="div/a/img[@class='thumbnail']/@alt"/>
+                    <xsl:element name="title">
+                        <xsl:value-of select="./div[1]/a/@title"/>
                     </xsl:element>
-                    <xsl:element name="postImgUrl">
-                        <xsl:value-of select="div/a/img[@class='thumbnail']/@src"/>
+                    <xsl:element name="imgUrl">
+                        <xsl:value-of select="./div[1]/a/img/@src"/>
                     </xsl:element>
-                    <xsl:element name="postOriginUrl">
-                        <xsl:value-of select="div[2]/h3/a/@href"/>
+                    <xsl:element name="originUrl">
+                        <xsl:value-of select="./div[1]/a/@href"/>
                     </xsl:element>
-                    <xsl:element name="postDateTime">
-                        <xsl:value-of select="div[2]/p[@class='smaller']/span[@class='dim']/@datetime"/>
+                    <xsl:element name="isHotNews">
+                        <xsl:value-of select="boolean(./div[2]/h3/i[@class='ico hot ico_status'])"/>
+                    </xsl:element>
+                    <xsl:element name="date">
+                        <xsl:value-of select="substring-before(normalize-space(./div[2]/p/span/@datetime), ' ')"/>
                     </xsl:element>
                 </xsl:element>
             </xsl:for-each>

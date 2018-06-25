@@ -1,0 +1,505 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'Fabrica';
+    src: url('../font/fabrica.otf');
+}
+
+@keyframes cityBackground {
+    from {opacity: 0.0;}
+    to {opacity: 1.0;}
+}
+
+@keyframes fadeIn {
+    from {transform: scale(1.25, 1.25); opacity: 0.0;}
+    to {transform: scale(1.0, 1.0); opacity: 1.0;}
+}
+
+@keyframes fadeOut {
+    from {transform: scale(1.0, 1.0); opacity: 1.0;}
+    to {transform: scale(1.25, 1.25); opacity: 0.0;}
+}
+
+@keyframes scaleDownFade {
+    from {transform: scale(1.0, 1.0);opacity: 1.0;}
+    to {transform: scale(0.8, 0.8);opacity: 0.25;}
+}
+
+@keyframes scaleUpFade {
+    from {transform: scale(0.8, 0.8);opacity: 0.0;}
+    to {transform: scale(1.0, 1.0);opacity: 1.0;}
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    background: url("../asset/bucharest-wall-1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.opacityAnimation {
+    animation-name: cityBackground;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+}
+
+.background-overlay {
+    background: radial-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.gui-layer {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.search {
+    font-family: 'Fabrica';
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 500px;
+    height: 50px;
+    font-size: 50px;
+}
+
+.current-status {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+    right: 70px;
+    top: 50px;
+    position: absolute;
+    color: white;
+    text-align: right;
+    font-size: 20px;
+}
+
+.current-status-1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: end;
+    margin-bottom: 10px;
+}
+
+.current-status-1 > i {
+    font-size: 70px;
+}
+
+.current-status-2 {
+    margin-bottom: 5px;
+}
+
+.main {
+    display: grid;
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    bottom: 0;
+    left: 0;
+    grid-template-columns: auto;
+    grid-template-rows: 70px 230px;
+}
+
+.main-nav {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr;
+    grid-template-rows: auto;
+    z-index: 1;
+}
+
+.main-nav-overlay {
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70px;
+    z-index: -1;    
+}
+
+.main-nav-item {
+    color: grey;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 5px;
+}
+
+.main-nav-item-active {
+    color: white;
+}
+
+.main-nav-item:first-child .main-nav-item-body {
+    justify-self: end;
+    margin-right: 20px;
+}
+
+.main-nav-item-body {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.main-nav-item-body i {
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.main-nav-item:nth-child(2) .main-nav-item-body i {
+    transform: rotateY(180deg);
+}
+
+.main-nav-item:nth-child(1) .main-nav-item-color-footer {
+    background-color: #E5F297;
+}
+
+
+.main-nav-item:nth-child(2) .main-nav-item-color-footer {
+    background-color: #9191F0;
+}
+
+
+.main-nav-item:nth-child(3) .main-nav-item-color-footer {
+    background-color: #FE9A76;
+}
+
+.main-nav-item-color-footer {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    height: 5px;
+}
+
+.main-info {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.main-info-overlay {
+    width: 100%;
+    height: 100%;
+    background: url("../asset/bucharest-wall-1.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: blur(20px);
+    z-index: -1;
+}
+
+.main-info-gui-layer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: translateY(-100%);
+}
+
+.temperature-tab {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    grid-template-rows: auto;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.temperature {
+    border-right: 1px solid rgba(102, 102, 102, 0.7);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+}
+
+.today-temperature {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    border-right: 1px solid rgba(102, 102, 102, 0.7);
+}
+
+.today-temperature-number {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    align-content: center;
+    transform: translateY(5%);
+}
+
+.today-temperature-number span:nth-child(1) {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    font-size: 120px;
+    font-family: 'Fabrica';
+    display: inline-flex;
+    align-items: center;
+}
+
+.today-temperature-number span:nth-child(2) {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    font-size: 50px;
+    font-family: 'Fabrica';
+    transform: translateY(-10%);
+}
+
+.today-temperature-number div {
+    border-radius: 5000px;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+    padding: 5px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: translateY(-50%);
+}
+
+
+.today-temperature-icon {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    justify-content: flex-start;
+    align-content: center;
+    transform: translate(-5%, -5%);
+}
+
+.today-temperature-icon i {
+    font-size: 120px;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    
+}
+
+.today-temperature-icon span {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.temperature-day {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+    transform: translateY(50%);
+}
+
+.temperature-day span {
+    border-radius: 5000px;
+    padding: 5px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.temperature i {
+    font-size: 40px;
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    text-align: center;
+    transform: translateY(25%);
+}
+
+.temperature span {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    text-align: center;
+}
+
+.news-tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: white;
+    grid-template-columns: 50px auto 50px;
+    grid-template-rows: 50px 30px 50px auto;
+    /* animation-name: fadeIn;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s; */
+}
+
+.news-event-header {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+}
+
+.news-event {
+    font-size: 23px;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.news-event-filter {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    justify-content: end;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: auto;
+    grid-column-gap: 3%;
+}
+
+.news-event-filter-item {
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    background: transparent;
+    transition: all 0.25s ease-in-out;
+}
+
+.news-event-filter-item:last-child {
+    padding: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.news-event-filter-item:last-child i {
+    font-size: 30px;
+}
+
+.news-event-filter-item:hover {
+    background: white;
+    color: black;
+}
+
+.news-event-filter-item-active {
+    background: white;
+    color: black;
+}
+
+.news-event-grid {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 300px;
+    grid-gap: 20px 20px;
+}
+
+.news-event-card {
+    width: 100%;
+    height: 100%;
+}
+
+.event-card {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 70% auto;
+}
+
+.event-card-image {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    background: url("../asset/event-1.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.event-card-description {
+    background-color: white;
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    color: black;
+    font-size: 13px;
+    padding: 10px 5% 15px 5%;
+}
+
+.event-card-date {
+    width: 0;
+    height: 0;
+    border-top: 70px solid #107974;
+    border-right: 70px solid transparent;
+}
+
+.event-card-date span {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    transform: rotate(-45deg);
+}
+
+.event-card-title {
+    width: 100%;
+    height: 25%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+}
+
+.news-card {
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: black;
+    display: grid;
+    grid-template-columns: 5% auto 5%;
+    grid-template-rows: 5% 1fr 2fr 0.5fr 5%;
+}
+
+.news-card-header {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5%;
+}
+
+.news-card-description {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+}
+
+.news-card-footer {
+    font-size: 13px;
+    text-align: right;
+    grid-column: 2 / span 1;
+    grid-row:  4 / span 1;
+}

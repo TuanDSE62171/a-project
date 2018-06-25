@@ -13,12 +13,12 @@ and open the template in the editor.
     <xs:element name="capitals" type="capitals"/>
     <xs:complexType name="capitals">
         <xs:sequence>
-            <xs:element name="capital" type="capitalItem" maxOccurs="unbounded"/>
+            <xs:element name="capital" type="capital" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="capitalItem">
-        <xs:attribute name="capitalName" type="xs:string"/>
+    <xs:complexType name="capital">
+        <xs:attribute name="name" type="xs:string"/>
         <xs:attribute name="countryName" type="xs:string"/>
-        <xs:attribute name="alphaTwoCode" type="xs:string"/>
+        <xs:attribute name="iso2Code" type="xs:string"/>
     </xs:complexType>
 </xs:schema>

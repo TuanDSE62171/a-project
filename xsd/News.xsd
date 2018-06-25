@@ -4,18 +4,19 @@
            targetNamespace="https://www.news.com"
            xmlns="https://www.news.com"
            elementFormDefault="qualified">
-    <xs:element name="stories" type="listNews"/>
-    <xs:complexType name="listNews">
+    <xs:element name="stories" type="stories"/>
+    <xs:complexType name="stories">
         <xs:sequence>
             <xs:element name="news" type="newsItem" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="newsItem">
         <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
             <xs:element name="imgUrl" type="xs:string"/>
             <xs:element name="originUrl" type="xs:string"/>
+            <xs:element name="isHotNews" type="xs:boolean"/>
+            <xs:element name="date" type="xs:date"/>
         </xs:sequence>
-        <xs:attribute name="newsId" type="xs:positiveInteger"/>
     </xs:complexType>
 </xs:schema>

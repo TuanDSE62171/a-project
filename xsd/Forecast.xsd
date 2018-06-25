@@ -10,18 +10,18 @@ and open the template in the editor.
            targetNamespace="https://www.forecast.com"
            xmlns="https://www.forecast.com"
            elementFormDefault="qualified">
-    <xs:element name="weathers" type="weathers"/>
-    <xs:complexType name="weathers">
+    <xs:element name="forecasts" type="forecasts"/>
+    <xs:complexType name="forecasts">
         <xs:sequence>
-            <xs:element name="weather" type="weatherItem" maxOccurs="7"/>
+            <xs:element name="forecast" type="forecast" maxOccurs="7"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="weatherItem">
+    <xs:complexType name="forecast">
         <xs:sequence>
-            <xs:element name="description" type="xs:string"/>
-            <xs:element name="windVelocity" type="xs:string"/>
-            <xs:element name="temp" type="xs:int"/>
-            <xs:element name="icon" type="xs:string"/>
+            <xs:element name="forecastDescription" type="xs:string"/>
+            <xs:element name="forecastWind" type="xs:string"/>
+            <xs:element name="forecastTemp" type="xs:int"/>
+            <xs:element name="forecastIcon" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
