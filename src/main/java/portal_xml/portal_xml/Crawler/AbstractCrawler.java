@@ -1,5 +1,6 @@
 package portal_xml.portal_xml.Crawler;
 
+import portal_xml.portal_xml.Entity.Jaxb.Capital.Capital;
 import portal_xml.portal_xml.EnumPage.CrawlPage;
 import portal_xml.portal_xml.Service.DBService;
 
@@ -8,7 +9,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.*;
@@ -21,7 +24,17 @@ public abstract class AbstractCrawler implements Callable {
 
     protected String templateInit = String.format("Starting %s", crawlerName);
 
-    protected  String templateDestroy = String.format("Destroying %s", crawlerName);
+    protected String templateDestroy = String.format("Destroying %s", crawlerName);
+
+    protected BlockingQueue<Capital> capitalBlockingQueue;
+
+    public static final String TERMINATION_MESSAGE = "NO_MORE_CAPITAL";
+
+    public static final Capital CAPITAL_QUEUE_TERMINATION_FLAG = ((Supplier<Capital>) (() -> {
+        Capital poisonPill = new Capital();
+        poisonPill.setName(TERMINATION_MESSAGE);
+        return poisonPill;
+    })).get();
 
     protected String templateStopped = String.format("%s stopped", crawlerName);
 
@@ -96,5 +109,9 @@ public abstract class AbstractCrawler implements Callable {
                 e.printStackTrace();
             }
         }
+    }
+
+    protected boolean isTerminationFlag(Capital capital){
+        return (capital.getName().equalsIgnoreCase(TERMINATION_MESSAGE));
     }
 }

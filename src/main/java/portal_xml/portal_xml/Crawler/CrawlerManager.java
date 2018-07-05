@@ -21,7 +21,9 @@ public class CrawlerManager {
 
     private ExecutorService es;
 
-    private List<AbstractCrawler> crawlerList;
+    public static List<AbstractCrawler> crawlerList;
+
+    public static int capitalSize;
 
     public static Future<List<Capital>> capitalFuture;
 

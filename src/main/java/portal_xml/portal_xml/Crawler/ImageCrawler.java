@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,87 +27,88 @@ public class ImageCrawler extends AbstractCrawler {
     public ImageCrawler(DBService service) {
         this.service = service;
         this.pageURL = IMAGE_PAGE;
+        this.capitalBlockingQueue = new LinkedBlockingDeque<>();
     }
 
     @Override
     public Object call() {
         LOGGER.log(INFO, templateInit);
-        List<Capital> capitals = null;
-        try {
-            capitals = CrawlerManager.capitalFuture.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
         XMLUtilities utilities = new XMLUtilities();
         String imagePage = IMAGE_PAGE.getUrl();
 
         String formattedString = "";
 
-        int totalProgress = capitals.size();
+        int totalProgress;
         double counter = 1;
-        for (Capital capital : capitals) {
-            while (this.stop){
-                LOGGER.log(INFO, templateStopped);
-                waitForSignalToContinue();
-                LOGGER.log(INFO, templateResumed);
+        try {
+            while(true){
+                System.out.println("Image waiting for capital");
+                Capital capital = this.capitalBlockingQueue.take();
+                System.out.println("Image capital found");
+                if(isTerminationFlag(capital)) break;
+                totalProgress = CrawlerManager.capitalSize;
+                while (this.stop){
+                    LOGGER.log(INFO, templateStopped);
+                    waitForSignalToContinue();
+                    LOGGER.log(INFO, templateResumed);
+                }
+                formattedString = String.format(imagePage,
+                        capital.getName().replaceAll("\\s+", "-"),
+                        capital.getCountryName().replaceAll("\\s+", "-"));
+                this.pageURL.setUrl(formattedString);
+                LOGGER.log(INFO, "{0}: Crawling images for " + capital.getName() + " of " + capital.getCountryName(), crawlerName);
+                String resultHTML = crawlHTML(null);
+
+                utilities.setResult(resultHTML);
+                Images images = null;
+                try {
+                    images = utilities.
+                            welformHTML(
+                                    getSubStringRegEx("<div id=\"gridSingle\"", "<\\/figure>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>"),
+                                    null,
+                                    null)
+                            .transform("xsl/image.xsl")
+                            .unmarshal(Images.class, "xsd/Image.xsd");
+
+                } catch (Exception e) {
+                    LOGGER.log(WARNING, "{0}: Images not found for url: " + formattedString, crawlerName);
+                }
+
+                if (images != null && !images.getImage().isEmpty()) {
+                    Stream<Image> stream = images.getImage().stream();
+
+                    // check for image dimension big enough
+
+                    List<Image> filtered = stream.map((image -> {
+                        String URL = image.getUrl();
+                        Pair<Integer, Integer> dimension = getDimension(URL);
+                        if (dimension != null) {
+                            image.setWidth(dimension.getKey());
+                            image.setHeight(dimension.getValue());
+
+                        }
+                        image.setIso2Code(capital.getIso2Code());
+                        return image;
+                    })).collect(Collectors.toList());
+
+                    filtered = filtered.stream()
+                            .filter((image) -> (image.getWidth() >= 1000 && image.getHeight() <= 700))
+                            .collect(Collectors.toList());
+
+                    filtered.forEach(image -> {
+                        service.saveImage(image);
+                        LOGGER.log(INFO, "{0}: image saved successful", crawlerName);
+                    });
+                }
+                progress = ((counter++ / totalProgress) * 100);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            formattedString = String.format(imagePage,
-                    capital.getName().replaceAll("\\s+", "-"),
-                    capital.getCountryName().replaceAll("\\s+", "-"));
-            this.pageURL.setUrl(formattedString);
-            LOGGER.log(INFO, "{0}: Crawling images for " + capital.getName() + " of " + capital.getCountryName(), crawlerName);
-            String resultHTML = crawlHTML(null);
-
-            utilities.setResult(resultHTML);
-            Images images = null;
-            try {
-                images = utilities.
-                        welformHTML(
-                                getSubStringRegEx("<div id=\"gridSingle\"", "<\\/figure>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>"),
-                                null,
-                                null)
-                        .transform("xsl/image.xsl")
-                        .unmarshal(Images.class, "xsd/Image.xsd");
-
-            } catch (Exception e) {
-                LOGGER.log(WARNING, "{0}: Images not found for url: " + formattedString, crawlerName);
-            }
-
-            if (images != null && !images.getImage().isEmpty()) {
-                Stream<Image> stream = images.getImage().stream();
-
-                // check for image dimension big enough
-
-                List<Image> filtered = stream.map((image -> {
-                    String URL = image.getUrl();
-                    Pair<Integer, Integer> dimension = getDimension(URL);
-                    if (dimension != null) {
-                        image.setWidth(dimension.getKey());
-                        image.setHeight(dimension.getValue());
-
-                    }
-                    image.setIso2Code(capital.getIso2Code());
-                    return image;
-                })).collect(Collectors.toList());
-
-                filtered = filtered.stream()
-                        .filter((image) -> (image.getWidth() >= 1000 && image.getHeight() <= 700))
-                        .collect(Collectors.toList());
-
-                filtered.forEach(image -> {
-                    service.saveImage(image);
-                    LOGGER.log(INFO, "{0}: image saved successful", crawlerName);
-                });
-            }
-            progress = ((counter++ / totalProgress) * 100);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         LOGGER.log(INFO, templateDestroy);
         return null;

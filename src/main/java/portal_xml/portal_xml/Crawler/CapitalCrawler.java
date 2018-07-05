@@ -7,8 +7,6 @@ import portal_xml.portal_xml.Utility.XMLUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.logging.Level;
 
 import static java.util.logging.Level.*;
 import static portal_xml.portal_xml.EnumPage.CrawlPage.*;
@@ -41,7 +39,7 @@ public class CapitalCrawler extends AbstractCrawler {
         int totalProgress = capitals.getCapital().size();
 
         if (capitals != null) {
-
+            CrawlerManager.capitalSize = capitals.getCapital().size();
             double counter = 1;
             for(Capital capital : capitals.getCapital()){
                 while(this.stop){
@@ -50,12 +48,30 @@ public class CapitalCrawler extends AbstractCrawler {
                     LOGGER.log(INFO, templateResumed);
                 }
                 service.saveCapital(capital);
+                for(AbstractCrawler crawler : CrawlerManager.crawlerList){
+                    if(crawler.capitalBlockingQueue != null){
+                        try {
+                            crawler.capitalBlockingQueue.put(capital);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 LOGGER.log(INFO, "{0}: Capital " + capital.getName() + " Code: " + capital.getIso2Code() + " saved successful", crawlerName);
                 progress = ((counter++/totalProgress)*100);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+            }
+            for(AbstractCrawler crawler : CrawlerManager.crawlerList){
+                if(crawler.capitalBlockingQueue != null){
+                    try {
+                        crawler.capitalBlockingQueue.put(AbstractCrawler.CAPITAL_QUEUE_TERMINATION_FLAG);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             LOGGER.log(INFO, templateDestroy);

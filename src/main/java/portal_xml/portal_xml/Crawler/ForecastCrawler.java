@@ -14,8 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
+import java.util.concurrent.LinkedBlockingDeque;
 
 
 import static java.util.logging.Level.*;
@@ -28,20 +27,12 @@ public class ForecastCrawler extends AbstractCrawler {
     public ForecastCrawler(DBService service) {
         this.pageURL = WEATHER_PAGE;
         this.service = service;
+        this.capitalBlockingQueue = new LinkedBlockingDeque<>();
     }
 
     @Override
     public Object call() {
         LOGGER.log(INFO, templateInit);
-        List<Capital> capitalList = null;
-        try {
-            capitalList = CrawlerManager.capitalFuture.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
         XMLUtilities utilities = new XMLUtilities();
         Forecasts forecasts = null;
         LocalDate date = null;
@@ -56,10 +47,14 @@ public class ForecastCrawler extends AbstractCrawler {
 
         List<Forecast> forecastList = new ArrayList<>();
 
-        int totalProgress = (capitalList.size() * 7);
-
-        if (capitalList != null && !capitalList.isEmpty()) {
-            for (Capital capital : capitalList) {
+        int totalProgress;
+        try {
+            while(true){
+                System.out.println("Forecast waiting for capital");
+                Capital capital = this.capitalBlockingQueue.take();
+                System.out.println("Forecast capital found");
+                if(isTerminationFlag(capital)) break;
+                totalProgress = (CrawlerManager.capitalSize * 7);
                 while(this.stop){
                     LOGGER.log(INFO, templateStopped);
                     waitForSignalToContinue();
@@ -128,6 +123,8 @@ public class ForecastCrawler extends AbstractCrawler {
                 utilities.reset();
                 sb.setLength(0);
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         LOGGER.log(INFO, templateDestroy);
         return null;
