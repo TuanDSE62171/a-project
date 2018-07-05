@@ -155,7 +155,8 @@ function showNewsTab() {
     newsTab.style.zIndex = 3;
 }
 
-function getImages(parsedXML) {
+function getImages(xml) {
+    var parsedXML = xml.responseXML;
     var urls = parsedXML.getElementsByTagName("url");
     var prototype = document.getElementsByClassName("gallery-item")[0];
     var galleryTab = document.getElementById("gallery-tab");
@@ -180,7 +181,8 @@ function getImages(parsedXML) {
     setMainNavActive(this.document.getElementById("tab-item-1"), 0, true);
 }
 
-function getNews(parsedXML) {
+function getNews(xml) {
+    var parsedXML = xml.responseXML;
     // new contents
     var newsContents = parsedXML.getElementsByTagName("news");
 
@@ -203,7 +205,8 @@ function getNews(parsedXML) {
     }
 }
 
-function getForecasts(parsedXML) {
+function getForecasts(xml) {
+    var parsedXML = xml.responseXML;
     //new content from server
     var forecasts = parsedXML.getElementsByTagName("forecast");
     var todayForecast = forecasts[0];
@@ -367,8 +370,8 @@ function displaySearchResult(result, fuzzySearchFound) {
 }
 
 function getInfoCapital(code, strVal) {
-    makeXMLRequest("http://localhost:8080/" + code + "/images", "GET", getImages, [HEADER_ACCEPT], true);
-    makeXMLRequest("http://localhost:8080/" + code + "/forecasts", "GET", getForecasts, [HEADER_ACCEPT], true);
+    makeXMLRequest("http://localhost:8080/" + code + "/images", "GET", getImages, [HEADER_ACCEPT]);
+    makeXMLRequest("http://localhost:8080/" + code + "/forecasts", "GET", getForecasts, [HEADER_ACCEPT]);
 
     toggleResult(null, false);
     document.getElementById("search").value = strVal;
@@ -381,7 +384,8 @@ function openNewsPostInOtherBrowserTab(url) {
 }
 
 function switchPage(page) {
-    makeXMLRequest("http://localhost:8080/totalpages?page=1", "GET", function (response) {
+    makeXMLRequest("http://localhost:8080/totalpages?page=1", "GET", function (res) {
+        var response = res.responseText;
         totalNewsPages = parseInt(response);
         document.getElementById("total-page").innerHTML = response;
         page = parseInt(page);
@@ -413,8 +417,8 @@ function switchPage(page) {
 
         document.getElementById("current-page").innerHTML = currentPage;
 
-        makeXMLRequest("http://localhost:8080/news?page=" + currentPage, "GET", getNews, [HEADER_ACCEPT], true);
-    }, null, false);
+        makeXMLRequest("http://localhost:8080/news?page=" + currentPage, "GET", getNews, [HEADER_ACCEPT]);
+    }, null);
 
 }
 

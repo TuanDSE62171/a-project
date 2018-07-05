@@ -1,20 +1,21 @@
-function makeXMLRequest(url, method, callbackFunction, headers, isXMLResponse, stringForPostRequest) {
+function makeXMLRequest(url, method, callbackFunction, headers, stringForPostRequest) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 401)) {
             if (callbackFunction) {
-                if (isXMLResponse) {
-                    callbackFunction(xhr.responseXML);
-                } else {
-                    callbackFunction(xhr.responseText);
-                }
+                // if (isXMLResponse) {
+                //     callbackFunction(xhr.responseXML);
+                // } else {
+                //     callbackFunction(xhr.responseText);
+                // }
+                callbackFunction(xhr);
             }
         }
     };
 
     xhr.open(method, url, true);
     if (headers) {
-        for (var i = 0; i < headers; i++) {
+        for (var i = 0; i < headers.length; i++) {
             xhr.setRequestHeader(headers[i].key, headers[i].value);
         }
     }

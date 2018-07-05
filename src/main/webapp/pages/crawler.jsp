@@ -18,8 +18,8 @@
     </div>
     <div class="unlock-code">
         <span>MÃ MỞ KHÓA</span>
-        <input type="text"/>
-        <button>Mở khóa</button>
+        <input id="token" type="text"/>
+        <span id="notification">A NOTIFICATION</span>
     </div>
     <div class="crawler-all">
         <span>Chạy hết</span>

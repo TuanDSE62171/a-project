@@ -61,11 +61,13 @@ html, body {
     justify-self: center;
 }
 
-.unlock-code button {
+#notification {
     grid-column: 1 / span 1;
     grid-row: 3 / span 1;
     width: 20%;
     justify-self: center;
+    justify-content: center;
+    align-self: center;
 }
 
 .crawler-all {
@@ -181,7 +183,7 @@ html, body {
 }
 
 .progress-bar-status {
-    background-color: green;
+    background-color: #b74c4c;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
 }
