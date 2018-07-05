@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mappings>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-1.png</from>
+        <to>wi wi-day-sunny</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-2.png</from>
+        <to>wi wi-day-sunny-overcast</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-3.png</from>
+        <to>wi wi-day-haze</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-4.png</from>
+        <to>wi wi-day-cloudy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-5.png</from>
+        <to>wi wi-day-light-wind</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-6.png</from>
+        <to>wi wi-day-cloudy-high</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-7.png</from>
+        <to>wi wi-cloudy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-8.png</from>
+        <to>wi wi-day-windy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-9.png</from>
+        <to>wi wi-day-windy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-10.png</from>
+        <to>wi wi-day-rain-wind</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-11.png</from>
+        <to>wi wi-sandstorm</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-12.png</from>
+        <to>wi wi-day-windy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-13.png</from>
+        <to>wi wi-night-clear</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-14.png</from>
+        <to>wi wi-night-alt-cloudy-gusts</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-15.png</from>
+        <to>wi wi-night-alt-partly-cloudy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-16.png</from>
+        <to>wi wi-night-alt-cloudy-windy</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-17.png</from>
+        <to>wi wi-night-alt-cloudy-high</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-18.png</from>
+        <to>wi wi-showers</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-19.png</from>
+        <to>wi wi-hail</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-20.png</from>
+        <to>wi wi-rain</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-21.png</from>
+        <to>wi wi-day-lightning</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-22.png</from>
+        <to>wi wi-thunderstorm</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-23.png</from>
+        <to>wi wi-storm-showers</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-24.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-25.png</from>
+        <to>wi wi-tornado</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-26.png</from>
+        <to>wi wi-hurricane</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-27.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-28.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-29.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-30.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-31.png</from>
+        <to>wi wi-sprinkle</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-32.png</from>
+        <to>wi wi-flood</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-33.png</from>
+        <to>wi wi-day-showers</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-34.png</from>
+        <to>wi wi-night-alt-showers</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-35.png</from>
+        <to>wi wi-night-alt-lightning</to>
+    </mapping>
+    <mapping>
+        <from>//c.tadst.com/gfx/w/40/wt-36.png</from>
+        <to>wi wi-na</to>
+    </mapping>
+</mappings>

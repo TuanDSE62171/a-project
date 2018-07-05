@@ -1,17 +1,39 @@
-package portal_xml.portal_xml.Entity;
+package portal_xml.portal_xml.Entity.Jaxb.News;
+
+
+import portal_xml.portal_xml.Utility.GregorianCalendarDateAdapter;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "news", propOrder = {
+        "title",
+        "postImgUrl",
+        "postOriginUrl",
+        "isHotNews",
+        "date"
+})
 public class News {
+
+    @XmlTransient
     private long id;
+    @XmlElement(required = true)
     private String title;
+    @XmlElement(required = true)
     private String postImgUrl;
+    @XmlElement(required = true)
     private String postOriginUrl;
+    @XmlElement(required = true)
     private boolean isHotNews;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(GregorianCalendarDateAdapter.class)
     private Date date;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,0 +1,218 @@
+@font-face {
+    font-family: 'ClearSans';
+    src: url("../font/ClearSans-Regular.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'ClearSans';
+    user-select: none;
+}
+
+html, body {
+    height: 100%;
+    background-color: #e7e7e7;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100px 100px 2% 50px auto;
+}
+
+.bug-logo {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bug-logo i {
+    transform: scale(4, 4); 
+}
+
+.unlock-code {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 40% 30%;
+    row-gap: 5%;
+}
+
+.unlock-code span {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+.unlock-code input {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    width: 20%;
+    font-size: 4vh;
+    justify-self: center;
+}
+
+.unlock-code button {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    width: 20%;
+    justify-self: center;
+}
+
+.crawler-all {
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+    background: linear-gradient(#f9f9f9, #ffffff);
+    display: grid;
+    grid-template-columns: auto 5% 5% auto;
+    grid-template-rows: auto;
+}
+
+.crawler-all span {
+    align-self: center;
+}
+
+.crawler-all span:first-child {
+    justify-self: flex-end;
+}
+
+.action-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.action-all i {
+    transform: scale(2, 2);
+}
+
+.action-all:hover {
+    background-color: #e5e5e5;
+}
+
+.crawler-list {
+    grid-column: 1 / span 1;
+    grid-row: 5 / span 1;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: 15%;
+    padding: 2%;
+    row-gap: 2%;
+}
+
+.crawler {
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    background: linear-gradient(#f9f9f9, #ffffff);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 100%; 
+}
+
+.crawler-header {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 5% 15% 25% 45% 10%;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.crawler-icon {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crawler-icon i {
+    transform: scale(2, 2);
+}
+
+.crawler-name {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crawler-target {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crawler-actions {
+    grid-column: 5 / span 1;
+    grid-row: 1 / span 1;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto;
+    align-items: center;
+}
+
+.crawler-progress {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    padding: 2%;
+}
+
+.progress-bar {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    display: grid;
+    background-color: #dadada;
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: auto;
+}
+
+.progress-bar-status {
+    background-color: green;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.progress-bar-percent {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: center;
+    align-self: center;
+}
+
+.action {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.action i {
+    transform: scale(2, 2);
+}
+
+.action:hover {
+    background-color: #e5e5e5;
+}
+
+.crawler-terminal {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    width: 100%;
+
+}

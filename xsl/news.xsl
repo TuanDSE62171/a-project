@@ -17,10 +17,10 @@
                     <xsl:element name="title">
                         <xsl:value-of select="./div[1]/a/@title"/>
                     </xsl:element>
-                    <xsl:element name="imgUrl">
+                    <xsl:element name="postImgUrl">
                         <xsl:value-of select="./div[1]/a/img/@src"/>
                     </xsl:element>
-                    <xsl:element name="originUrl">
+                    <xsl:element name="postOriginUrl">
                         <xsl:value-of select="./div[1]/a/@href"/>
                     </xsl:element>
                     <xsl:element name="isHotNews">

@@ -7,14 +7,14 @@
     <xs:element name="stories" type="stories"/>
     <xs:complexType name="stories">
         <xs:sequence>
-            <xs:element name="news" type="newsItem" maxOccurs="unbounded"/>
+            <xs:element name="news" type="news" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="newsItem">
+    <xs:complexType name="news">
         <xs:sequence>
             <xs:element name="title" type="xs:string"/>
-            <xs:element name="imgUrl" type="xs:string"/>
-            <xs:element name="originUrl" type="xs:string"/>
+            <xs:element name="postImgUrl" type="xs:string"/>
+            <xs:element name="postOriginUrl" type="xs:string"/>
             <xs:element name="isHotNews" type="xs:boolean"/>
             <xs:element name="date" type="xs:date"/>
         </xs:sequence>

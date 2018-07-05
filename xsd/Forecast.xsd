@@ -18,6 +18,8 @@ and open the template in the editor.
     </xs:complexType>
     <xs:complexType name="forecast">
         <xs:sequence>
+            <xs:element name="forecastDayOfWeek" type="xs:string"/>
+            <xs:element name="forecastDay" type="xs:string"/>
             <xs:element name="forecastDescription" type="xs:string"/>
             <xs:element name="forecastWind" type="xs:string"/>
             <xs:element name="forecastTemp" type="xs:int"/>

@@ -1,6 +1,5 @@
 
-package portal_xml.portal_xml.Entity.Jaxb.Capital;
-
+package portal_xml.portal_xml.Entity.Jaxb.News;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -8,16 +7,16 @@ import java.util.List;
 
 
 /**
- * <p>Java class for capitals complex type.
+ * <p>Java class for stories complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="capitals"&gt;
+ * &lt;complexType name="stories"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="capital" type="{https://www.capitals.com}capitalItem" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="news" type="{https://www.news.com}newsItem" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -27,46 +26,46 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "capitals", propOrder = {
-    "capital"
+@XmlType(name = "stories", propOrder = {
+    "news"
 })
-@XmlRootElement(name = "capitals")
-public class Capitals {
+@XmlRootElement(name = "stories")
+public class Stories {
 
     @XmlElement(required = true)
-    protected List<Capital> capital;
+    protected List<News> news;
 
     /**
-     * Gets the value of the capital property.
+     * Gets the value of the news property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the capital property.
+     * This is why there is not a <CODE>set</CODE> method for the news property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCapital().add(newItem);
+     *    getNews().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Capital }
+     * {@link News }
      * 
      * 
      */
-    public List<Capital> getCapital() {
-        if (capital == null) {
-            capital = new ArrayList<Capital>();
+    public List<News> getNews() {
+        if (news == null) {
+            news = new ArrayList<News>();
         }
-        return this.capital;
+        return this.news;
     }
 
-    public void setCapital(List<Capital> capital){
-        this.capital = capital;
+    public void setNews(List<News> list){
+        this.news = list;
     }
 
 }

@@ -1,5 +1,7 @@
 package portal_xml.portal_xml.Entity.Jaxb.Forecast;
 
+import portal_xml.portal_xml.Utility.Mergeable;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.sql.Date;
@@ -15,7 +17,7 @@ import java.util.Objects;
         "forecastTemp",
         "forecastIcon"
 })
-public class Forecast {
+public class Forecast implements Mergeable<Forecast> {
 
     @XmlTransient
     private long id;
@@ -176,5 +178,13 @@ public class Forecast {
     public int hashCode() {
 
         return Objects.hash(id, capitalIso2Code, forecastDate, forecastDay, forecastMonth, forecastYear, forecastDayOfWeek, forecastDescription, forecastWind, forecastTemp, forecastIcon);
+    }
+
+    @Override
+    public void merge(Forecast newEntity) {
+        this.forecastDescription = newEntity.forecastDescription;
+        this.forecastWind = newEntity.forecastWind;
+        this.forecastTemp = newEntity.forecastTemp;
+        this.forecastIcon = newEntity.forecastIcon;
     }
 }

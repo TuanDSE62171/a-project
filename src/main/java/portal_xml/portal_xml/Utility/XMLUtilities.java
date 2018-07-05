@@ -20,13 +20,21 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.*;
 import java.util.function.UnaryOperator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.util.logging.Level.*;
 
 @Service
 public class XMLUtilities {
 
     private StringBuilder result;
+
+    private final Logger LOGGER = Logger.getLogger(this.getClass().getSimpleName());
+
+    private String callerClass = Thread.currentThread().getStackTrace()[2].getClassName();
 
     public XMLUtilities(){
         result = new StringBuilder("");
@@ -69,7 +77,7 @@ public class XMLUtilities {
             result = replaceAllFunc.apply(result);
         }
         this.result = new StringBuilder(result);
-        System.out.println("Welform done");
+        LOGGER.log(INFO, "{0} wellform done", new Object[]{callerClass});
         return this;
     }
 
@@ -88,7 +96,7 @@ public class XMLUtilities {
             transformer.transform(input, output);
             result = writer.toString();
             this.result = new StringBuilder(result);
-            System.out.println("Transformation done");
+            LOGGER.log(INFO, "{0} transformation done", new Object[]{callerClass});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +109,7 @@ public class XMLUtilities {
                 JAXBContext jc = JAXBContext.newInstance(jaxbClass);
                 Unmarshaller unmarshaller = jc.createUnmarshaller();
                 T result = (T) unmarshaller.unmarshal(new StringReader(this.result.toString()));
-                System.out.println("Unmarshaling done");
+                LOGGER.log(INFO, "{0} unmarshaling done", new Object[]{callerClass});
                 return result;
             } catch (JAXBException e) {
                 e.printStackTrace();
@@ -140,5 +148,7 @@ public class XMLUtilities {
         }
         return false;
     }
+
+
 
 }
