@@ -6,4 +6,6 @@ import portal_xml.portal_xml.entity.jaxb.news.News;
 
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
+
+    News findByPostOriginUrl(String postUrl);
 }

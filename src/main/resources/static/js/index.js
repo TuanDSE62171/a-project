@@ -5,7 +5,7 @@ var HEADER_ACCEPT = { key: "Accept", value: "application/xml" };
 window.onload = function () {
 
     images = parse(images);
-    getImages(images);
+    getImages({responseXML: images});
 
     currentCapital = parse(currentCapital);
 

@@ -16,6 +16,7 @@ import portal_xml.portal_xml.repository.ForecastRepository;
 import portal_xml.portal_xml.repository.ImageRepository;
 import portal_xml.portal_xml.repository.NewsRepository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,12 @@ public class DBService {
         return forecasts;
     }
 
+    public Forecasts getForecastsByCodeAndBetweenDate(String code, Date startDate, Date endDate){
+        Forecasts forecasts = new Forecasts();
+        forecasts.setForecast(forecastRepository.findTop7ByCapitalIso2CodeAndForecastDateBetween(code, startDate, endDate));
+        return forecasts;
+    }
+
     public Forecasts getAllRecentForecasts() {
         Sort sort = new Sort("ForecastDate")
                 .ascending();
@@ -78,11 +85,23 @@ public class DBService {
     }
 
     public void saveImage(Image image) {
-        imageRepository.save(image);
+        Image existed = imageRepository.findByUrl(image.getUrl());
+        if(existed != null){
+            existed.merge(image);
+            imageRepository.save(existed);
+        } else {
+            imageRepository.save(image);
+        }
     }
 
-    public void saveStories(List<News> list) {
-        newsRepository.saveAll(list);
+    public void saveNews(News news){
+        News existed = newsRepository.findByPostOriginUrl(news.getPostOriginUrl());
+        if(existed != null){
+            existed.merge(news);
+            newsRepository.save(existed);
+        } else {
+            newsRepository.save(news);
+        }
     }
 
     public void saveForecast(Forecast forecast) {

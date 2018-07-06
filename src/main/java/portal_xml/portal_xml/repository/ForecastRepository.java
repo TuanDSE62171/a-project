@@ -13,4 +13,6 @@ public interface ForecastRepository extends JpaRepository<Forecast, Long> {
     List<Forecast> findTop7ByCapitalIso2CodeOrderByForecastDateAsc(String code);
 
     Forecast findByCapitalIso2CodeAndAndForecastDate(String code, Date date);
+
+    List<Forecast> findTop7ByCapitalIso2CodeAndForecastDateBetween(String code, Date startDate, Date endDate);
 }

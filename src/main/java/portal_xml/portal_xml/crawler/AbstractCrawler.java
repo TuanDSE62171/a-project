@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.*;
 
-public abstract class AbstractCrawler implements Callable {
+public abstract class AbstractCrawler implements Runnable {
 
     protected final Logger LOGGER = Logger.getLogger(this.getClass().getSimpleName());
 
@@ -24,7 +24,7 @@ public abstract class AbstractCrawler implements Callable {
 
     protected String templateInit = String.format("Starting %s", crawlerName);
 
-    protected String templateDestroy = String.format("Destroying %s", crawlerName);
+    protected String templateFinished = String.format("Finished %s", crawlerName);
 
     protected BlockingQueue<Capital> capitalBlockingQueue;
 
@@ -113,5 +113,10 @@ public abstract class AbstractCrawler implements Callable {
 
     protected boolean isTerminationFlag(Capital capital){
         return (capital.getName().equalsIgnoreCase(TERMINATION_MESSAGE));
+    }
+
+    protected void resetProgress(){
+        this.stop = true;
+        this.progress = 0;
     }
 }

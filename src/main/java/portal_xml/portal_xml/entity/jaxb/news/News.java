@@ -2,6 +2,7 @@ package portal_xml.portal_xml.entity.jaxb.news;
 
 
 import portal_xml.portal_xml.utility.GregorianCalendarDateAdapter;
+import portal_xml.portal_xml.utility.Mergeable;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -18,7 +19,7 @@ import java.util.Objects;
         "isHotNews",
         "date"
 })
-public class News {
+public class News implements Mergeable<News> {
 
     @XmlTransient
     private long id;
@@ -113,5 +114,13 @@ public class News {
     public int hashCode() {
 
         return Objects.hash(id, title, postImgUrl, postOriginUrl, isHotNews, date);
+    }
+
+    @Override
+    public void merge(News newEntity) {
+        this.title = newEntity.title;
+        this.postImgUrl = newEntity.postImgUrl;
+        this.isHotNews = newEntity.isHotNews;
+        this.date = newEntity.date;
     }
 }

@@ -12,7 +12,11 @@ import java.util.Objects;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "capital")
+@XmlType(name = "capital", propOrder = {
+        "iso2Code",
+        "name",
+        "countryName"
+})
 public class Capital {
 
     @XmlAttribute(name = "iso2Code")

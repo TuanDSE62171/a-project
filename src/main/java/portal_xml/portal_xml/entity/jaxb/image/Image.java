@@ -1,5 +1,7 @@
 package portal_xml.portal_xml.entity.jaxb.image;
 
+import portal_xml.portal_xml.utility.Mergeable;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Objects;
@@ -12,7 +14,7 @@ import java.util.Objects;
         "height",
         "url"
 })
-public class Image {
+public class Image implements Mergeable<Image> {
 
     @XmlTransient
     private long id;
@@ -93,5 +95,12 @@ public class Image {
     public int hashCode() {
 
         return Objects.hash(id, iso2Code, width, height, url);
+    }
+
+    @Override
+    public void merge(Image newEntity) {
+        this.height = newEntity.height;
+        this.width = newEntity.width;
+        this.iso2Code = newEntity.iso2Code;
     }
 }

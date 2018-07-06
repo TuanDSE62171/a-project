@@ -8,4 +8,6 @@ import java.util.List;
 public interface ImageRepository extends JpaRepository<Image, Long> {
 
     List<Image> findByIso2Code(String code);
+
+    Image findByUrl(String url);
 }

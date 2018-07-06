@@ -43,7 +43,7 @@ public class RandomTokenManager {
     // every 30 seconds 0/30 * * ? * *
     // every sunday 0 0 * ? * SUN
     // every hour * * * ? * *
-    @Scheduled(cron = "0/30 * * ? * *")
+    @Scheduled(cron = "0 0 * ? * SUN")
     public void generateToken(){
         Date date = new Date();
         String randomToken = RandomStringUtils.randomAlphanumeric(15);

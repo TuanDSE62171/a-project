@@ -54,36 +54,46 @@
             </div>
         </div>
         <xsl:if test="$everydayForecast">
-            <xsl:for-each select="//*[local-name()='forecast'][position() != 1]">
-                <div class="temperature">
-                    <div class="temperature-day">
-                        <span>
-                            <xsl:value-of select="./*[local-name()='forecastDayOfWeek']"/>
-                        </span>
-                    </div>
-                    <div>
-                        <i>
-                            <xsl:attribute name="class">
-                                <xsl:value-of select="./*[local-name()='forecastIcon']"/>
-                            </xsl:attribute>
-                        </i>
-                    </div>
-                    <span>
-                        <xsl:value-of select="./*[local-name()='forecastTemp']"/>
-                    </span>
-                </div>
-            </xsl:for-each>
+            <xsl:call-template name="recursiveForecast">
+                <xsl:with-param name="counter" select="1"/>
+            </xsl:call-template>
         </xsl:if>
         <xsl:if test="not($everydayForecast)">
-            <xsl:call-template name="recursiveForecast">
-                <xsl:with-param name="counter" select="0"/>
+            <xsl:call-template name="recursiveForecastNone">
+                <xsl:with-param name="counter" select="1"/>
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
 
     <xsl:template name="recursiveForecast">
         <xsl:param name="counter"/>
-        <xsl:if test="$counter!=6">
+        <xsl:if test="$counter!=7">
+            <div class="temperature">
+                <div class="temperature-day">
+                    <span>
+                        <xsl:value-of select="//*[local-name()='forecast'][$counter+1]/*[local-name()='forecastDayOfWeek']"/>
+                    </span>
+                </div>
+                <div>
+                    <i>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="//*[local-name()='forecast'][$counter+1]/*[local-name()='forecastIcon']"/>
+                        </xsl:attribute>
+                    </i>
+                </div>
+                <span>
+                    <xsl:value-of select="//*[local-name()='forecast'][$counter+1]/*[local-name()='forecastTemp']"/>
+                </span>
+            </div>
+            <xsl:call-template name="recursiveForecast">
+                <xsl:with-param name="counter" select="$counter+1"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="recursiveForecastNone">
+        <xsl:param name="counter"/>
+        <xsl:if test="$counter!=7">
             <div class="temperature">
                 <div class="temperature-day">
                     <span>
@@ -101,7 +111,7 @@
                     <xsl:text>&#35;&#176;</xsl:text>
                 </span>
             </div>
-            <xsl:call-template name="recursiveForecast">
+            <xsl:call-template name="recursiveForecastNone">
                 <xsl:with-param name="counter" select="$counter+1"/>
             </xsl:call-template>
         </xsl:if>

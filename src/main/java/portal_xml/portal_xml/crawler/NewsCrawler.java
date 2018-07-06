@@ -26,51 +26,49 @@ public class NewsCrawler extends AbstractCrawler {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object call() {
+    public void run() {
         LOGGER.log(INFO, templateInit);
         XMLUtilities utilities = new XMLUtilities();
         HashMap<String, String> queryParameters = new HashMap<>();
-        List<News> newsList = new ArrayList<>();
         int totalProgress = (10 * 18);
-        double counter = 1;
-        for (int i = 1; i <= 10; i++) {
-            while (this.stop){
-                LOGGER.log(INFO, templateStopped);
-                waitForSignalToContinue();
-                LOGGER.log(INFO, templateResumed);
-            }
-            queryParameters.put("page", String.valueOf(i));
-            LOGGER.log(INFO, "{0}: crawling page {1}", new Object[]{crawlerName, i});
-            String newsHTML = crawlHTML(queryParameters);
-            utilities.setResult(newsHTML);
-            Stories stories = utilities.welformHTML(getSubStringRegEx("<div class=\"w-body list\">\n", "<\\/ul>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>"),
-                    getReplaceAllInvalidTokens(new Pair[]{new Pair("async", ""),
-                            new Pair("&raquo;", ""),
-                            new Pair("&laquo;", "")
-                    }), null)
-                    .transform("xsl/news.xsl")
-                    .unmarshal(Stories.class, "xsd/news.xsd");
+        while (true) {
+            double counter = 1;
+            for (int i = 1; i <= 10; i++) {
+                while (this.stop) {
+                    LOGGER.log(INFO, templateStopped);
+                    waitForSignalToContinue();
+                    LOGGER.log(INFO, templateResumed);
+                }
+                queryParameters.put("page", String.valueOf(i));
+                LOGGER.log(INFO, "{0}: crawling page {1}", new Object[]{crawlerName, i});
+                String newsHTML = crawlHTML(queryParameters);
+                utilities.setResult(newsHTML);
+                Stories stories = utilities.welformHTML(getSubStringRegEx("<div class=\"w-body list\">\n", "<\\/ul>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>"),
+                        getReplaceAllInvalidTokens(new Pair[]{new Pair("async", ""),
+                                new Pair("&raquo;", ""),
+                                new Pair("&laquo;", "")
+                        }), null)
+                        .transform("xsl/news.xsl")
+                        .unmarshal(Stories.class, "xsd/news.xsd");
 
-            for (News n : stories.getNews()) {
-                News news = new News();
-                news.setTitle(n.getTitle());
-                news.setPostImgUrl(n.getPostImgUrl());
-                news.setPostOriginUrl(n.getPostOriginUrl());
-                news.setHotNews(n.isHotNews());
-                news.setDate(Date.valueOf(n.getDate().toString()));
-                newsList.add(news);
-                progress = ((counter++ / totalProgress) * 100);
+                for (News n : stories.getNews()) {
+                    News news = new News();
+                    news.setTitle(n.getTitle());
+                    news.setPostImgUrl(n.getPostImgUrl());
+                    news.setPostOriginUrl(n.getPostOriginUrl());
+                    news.setHotNews(n.isHotNews());
+                    news.setDate(Date.valueOf(n.getDate().toString()));
+                    service.saveNews(n);
+                    progress = ((counter++ / totalProgress) * 100);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-
-            service.saveStories(newsList);
-            newsList.clear();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            this.stop = true;
+            LOGGER.log(INFO, templateFinished);
         }
-        LOGGER.log(INFO, templateDestroy);
-        return null;
     }
 }

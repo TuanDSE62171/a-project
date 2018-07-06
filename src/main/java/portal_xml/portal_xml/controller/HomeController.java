@@ -1,6 +1,7 @@
 package portal_xml.portal_xml.controller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import portal_xml.portal_xml.entity.jaxb.capital.Capital;
@@ -13,7 +14,9 @@ import portal_xml.portal_xml.service.DBService;
 import portal_xml.portal_xml.utility.XMLUtilities;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.http.MediaType.*;
@@ -34,14 +37,13 @@ public class HomeController {
     public ModelAndView home(HttpServletRequest request) {
         String country = request.getLocale().getCountry();
         country = country.replaceAll("\\s*", "");
-        String xmlStringForecast = xmlUtilities.marshal(Forecasts.class, getForecastByCode(country));
+        String xmlStringForecast = xmlUtilities.marshal(Forecasts.class, getForecastByCode(country, null));
         String xmlStringCapitals = xmlUtilities.marshal(Capitals.class, getAllCapitals());
 
         String xmlStringCurrentCapital = xmlUtilities.marshal(Capitals.class, getCapitalByCode(country));
 
 
         String xmlStringNews = xmlUtilities.marshal(Stories.class, getNews("1", "10"));
-
 
 
         String xmlStringImage = xmlUtilities.marshal(Images.class, getImagesByCode(country));
@@ -61,8 +63,11 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/{code}/forecasts", produces = APPLICATION_XML_VALUE)
-    public Forecasts getForecastByCode(@PathVariable String code) {
-        Forecasts forecasts = service.getForecastsByCode(code);
+    public Forecasts getForecastByCode(@PathVariable String code,
+                                       @RequestParam(value = "d", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        if(date == null) date = LocalDate.now();
+        LocalDate endDate = date.plusDays(7);
+        Forecasts forecasts = service.getForecastsByCodeAndBetweenDate(code, java.sql.Date.valueOf(date), java.sql.Date.valueOf(endDate));
         return forecasts;
     }
 
@@ -75,7 +80,7 @@ public class HomeController {
 
     @RequestMapping(value = "/news", produces = APPLICATION_XML_VALUE)
     public Stories getNews(@RequestParam(defaultValue = "1", name = "page") String page,
-                              @RequestParam(defaultValue = "10", name = "size") String size) {
+                           @RequestParam(defaultValue = "10", name = "size") String size) {
         Stories stories = new Stories();
         stories.setNews(service.getNews(Integer.parseInt(page), Integer.parseInt(size)).getContent());
         return stories;

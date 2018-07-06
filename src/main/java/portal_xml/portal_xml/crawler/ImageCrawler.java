@@ -31,7 +31,7 @@ public class ImageCrawler extends AbstractCrawler {
     }
 
     @Override
-    public Object call() {
+    public void run() {
         LOGGER.log(INFO, templateInit);
         XMLUtilities utilities = new XMLUtilities();
         String imagePage = IMAGE_PAGE.getUrl();
@@ -40,15 +40,22 @@ public class ImageCrawler extends AbstractCrawler {
 
         int totalProgress;
         double counter = 1;
-        try {
-            while(true){
+        while (true) {
+            try {
                 Capital capital = this.capitalBlockingQueue.take();
-                if(isTerminationFlag(capital)) break;
+                if (isTerminationFlag(capital)) {
+                    counter = 1;
+                    LOGGER.log(INFO, templateFinished);
+                }
                 totalProgress = CrawlerManager.capitalSize;
-                while (this.stop){
+                while (this.stop) {
                     LOGGER.log(INFO, templateStopped);
                     waitForSignalToContinue();
                     LOGGER.log(INFO, templateResumed);
+                }
+                if(isTerminationFlag(capital)){
+                    resetProgress();
+                    capital = this.capitalBlockingQueue.take(); // restart after finished
                 }
                 formattedString = String.format(imagePage,
                         capital.getName().replaceAll("\\s+", "-"),
@@ -77,6 +84,7 @@ public class ImageCrawler extends AbstractCrawler {
 
                     // check for image dimension big enough
 
+                    Capital lambdaCapital = capital;
                     List<Image> filtered = stream.map((image -> {
                         String URL = image.getUrl();
                         Pair<Integer, Integer> dimension = getDimension(URL);
@@ -85,7 +93,7 @@ public class ImageCrawler extends AbstractCrawler {
                             image.setHeight(dimension.getValue());
 
                         }
-                        image.setIso2Code(capital.getIso2Code());
+                        image.setIso2Code(lambdaCapital.getIso2Code());
                         return image;
                     })).collect(Collectors.toList());
 
@@ -104,12 +112,10 @@ public class ImageCrawler extends AbstractCrawler {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        LOGGER.log(INFO, templateDestroy);
-        return null;
     }
 
     public Pair<Integer, Integer> getDimension(String url) {
