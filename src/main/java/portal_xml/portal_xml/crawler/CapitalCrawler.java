@@ -3,6 +3,7 @@ package portal_xml.portal_xml.crawler;
 import portal_xml.portal_xml.entity.jaxb.capital.Capital;
 import portal_xml.portal_xml.entity.jaxb.capital.Capitals;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
 import portal_xml.portal_xml.utility.XMLUtilities;
 
 import static java.util.logging.Level.*;
@@ -11,19 +12,19 @@ import static portal_xml.portal_xml.helperfunction.HelperFunction.getSubStringRe
 
 public class CapitalCrawler extends AbstractCrawler {
 
-    public CapitalCrawler(DBService service) {
+    public CapitalCrawler(DBService service, ErrorFileConfig errorFileConfig) {
         this.pageURL = CAPITAL_PAGE;
         this.service = service;
+        this.errorFileConfig = errorFileConfig;
     }
 
     @Override
     public void run() {
-        LOGGER.log(INFO, templateInit);
         while (true) {
+            setupLogger();
+            LOGGER.log(INFO, templateStarted);
             while (this.stop) {
-                LOGGER.log(INFO, templateStopped);
                 waitForSignalToContinue();
-                LOGGER.log(INFO, templateResumed);
             }
             XMLUtilities utilities = new XMLUtilities();
             String resultHTML = crawlHTML(null);
@@ -41,9 +42,7 @@ public class CapitalCrawler extends AbstractCrawler {
                 double counter = 1;
                 for (Capital capital : capitals.getCapital()) {
                     while (this.stop) {
-                        LOGGER.log(INFO, templateStopped);
                         waitForSignalToContinue();
-                        LOGGER.log(INFO, templateResumed);
                     }
                     service.saveCapital(capital);
                     for (AbstractCrawler crawler : CrawlerManager.crawlerList) {
@@ -55,7 +54,7 @@ public class CapitalCrawler extends AbstractCrawler {
                             }
                         }
                     }
-                    LOGGER.log(INFO, "{0}: capital " + capital.getName() + " Code: " + capital.getIso2Code() + " saved successful", crawlerName);
+                    LOGGER.log(INFO, "capital " + capital.getName() + " Code: " + capital.getIso2Code() + " saved successful");
                     progress = ((counter++ / totalProgress) * 100);
                     try {
                         Thread.sleep(1000);
@@ -75,6 +74,7 @@ public class CapitalCrawler extends AbstractCrawler {
             }
             this.stop = true;
             LOGGER.log(INFO, templateFinished);
+            closeLogger();
         }
     }
 }

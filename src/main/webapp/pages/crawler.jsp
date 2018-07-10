@@ -19,7 +19,7 @@
     <div class="unlock-code">
         <span>MÃ MỞ KHÓA</span>
         <input id="token" type="text"/>
-        <span id="notification">A NOTIFICATION</span>
+        <span id="notification">Nhập MÃ MỞ KHÓA</span>
     </div>
     <div class="crawler-all">
         <span>Chạy hết</span>

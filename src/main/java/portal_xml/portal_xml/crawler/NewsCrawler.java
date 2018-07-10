@@ -4,12 +4,11 @@ import javafx.util.Pair;
 import portal_xml.portal_xml.entity.jaxb.news.News;
 import portal_xml.portal_xml.entity.jaxb.news.Stories;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
 import portal_xml.portal_xml.utility.XMLUtilities;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 import static java.util.logging.Level.*;
@@ -19,28 +18,28 @@ import static portal_xml.portal_xml.helperfunction.HelperFunction.getSubStringRe
 
 public class NewsCrawler extends AbstractCrawler {
 
-    public NewsCrawler(DBService service) {
+    public NewsCrawler(DBService service, ErrorFileConfig errorFileConfig) {
         this.pageURL = NEWS_PAGE;
         this.service = service;
+        this.errorFileConfig = errorFileConfig;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void run() {
-        LOGGER.log(INFO, templateInit);
         XMLUtilities utilities = new XMLUtilities();
         HashMap<String, String> queryParameters = new HashMap<>();
         int totalProgress = (10 * 18);
         while (true) {
+            setupLogger();
+            LOGGER.log(INFO, templateStarted);
             double counter = 1;
             for (int i = 1; i <= 10; i++) {
                 while (this.stop) {
-                    LOGGER.log(INFO, templateStopped);
                     waitForSignalToContinue();
-                    LOGGER.log(INFO, templateResumed);
                 }
                 queryParameters.put("page", String.valueOf(i));
-                LOGGER.log(INFO, "{0}: crawling page {1}", new Object[]{crawlerName, i});
+                LOGGER.log(INFO, "Crawling page " + i);
                 String newsHTML = crawlHTML(queryParameters);
                 utilities.setResult(newsHTML);
                 Stories stories = utilities.welformHTML(getSubStringRegEx("<div class=\"w-body list\">\n", "<\\/ul>\\t*\\n*\\s*<\\/div>\\t*\\n*\\s*<\\/div>"),
@@ -69,6 +68,7 @@ public class NewsCrawler extends AbstractCrawler {
             }
             this.stop = true;
             LOGGER.log(INFO, templateFinished);
+            closeLogger();
         }
     }
 }

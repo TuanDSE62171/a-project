@@ -1,0 +1,33 @@
+[10-07-2018 23:36:10] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:36:10] INFO --- NewsCrawler: NewsCrawler stopped
+[10-07-2018 23:36:37] INFO --- NewsCrawler: Crawling page 1
+[10-07-2018 23:36:37] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:39] INFO --- NewsCrawler: Crawling page 2
+[10-07-2018 23:36:39] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:40] INFO --- NewsCrawler: Crawling page 3
+[10-07-2018 23:36:41] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:42] INFO --- NewsCrawler: Crawling page 4
+[10-07-2018 23:36:42] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:43] INFO --- NewsCrawler: Crawling page 5
+[10-07-2018 23:36:43] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:44] INFO --- NewsCrawler: Crawling page 6
+[10-07-2018 23:36:44] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:45] INFO --- NewsCrawler: Crawling page 7
+[10-07-2018 23:36:46] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:47] INFO --- NewsCrawler: Crawling page 8
+[10-07-2018 23:36:47] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:48] INFO --- NewsCrawler: Crawling page 9
+[10-07-2018 23:36:48] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:49] INFO --- NewsCrawler: Crawling page 10
+[10-07-2018 23:36:49] INFO --- NewsCrawler: Crawl HTML done
+[10-07-2018 23:36:50] INFO --- NewsCrawler: Finished NewsCrawler
+[10-07-2018 23:36:50] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:36:50] INFO --- NewsCrawler: NewsCrawler stopped
+[10-07-2018 23:51:47] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:51:47] INFO --- NewsCrawler: NewsCrawler stopped
+[10-07-2018 23:54:02] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:54:02] INFO --- NewsCrawler: NewsCrawler stopped
+[10-07-2018 23:57:19] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:57:19] INFO --- NewsCrawler: NewsCrawler stopped
+[10-07-2018 23:59:18] INFO --- NewsCrawler: Starting NewsCrawler
+[10-07-2018 23:59:18] INFO --- NewsCrawler: NewsCrawler stopped

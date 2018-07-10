@@ -150,6 +150,7 @@ function render() {
     var actionAll = document.getElementsByClassName("action-all");
     var stoppedAll = isAllCrawlersStopped();
     var finishedAll = isAllCrawlersFinished();
+    var token = document.getElementById("token");
 
     // reset style
     for (var i = 0; i < actionAll.length; i++) {
@@ -162,6 +163,7 @@ function render() {
     }
 
     if (stoppedAll && stoppedAll != null) {
+        token.readOnly = false;
         actionAll[1].firstElementChild.style.opacity = '0.1';
         if (finishedAll) {
             actionAll[0].firstElementChild.className = 'icon ion-md-refresh restart';
@@ -172,6 +174,7 @@ function render() {
             };
         })();
     } else if (!stoppedAll) {
+        token.readOnly = true;
         actionAll[0].firstElementChild.style.opacity = '0.1';
         actionAll[1].onclick = (function () {
             return function () {

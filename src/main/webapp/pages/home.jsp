@@ -27,7 +27,7 @@
         var capitals = '${requestScope.capitals}';
         var images = '${requestScope.images}';
         var currentCapital = '${requestScope.currentCapital}';
-        var totalNewsPages = parseInt(${totalNewsPages});
+        var totalNewsPages = parseInt(${ totalNewsPages });
     </script>
     <script src="js/index.js"></script>
     <script src="js/utility.js"></script>
@@ -56,17 +56,14 @@
             <div id="current-page">1</div>
             <div id="slash">&#47;</div>
             <div id="total-page">${totalNewsPages}</div>
-            <div  id="news-next-page">
+            <div id="news-next-page">
                 <i onclick="switchPage(1)" class="icon ion-md-arrow-dropright-circle"></i>
             </div>
         </div>
     </div>
     <div id="gui-layer" class="gui-layer">
-        <input id="search" class="search" type="text"
-               value="<x:out select="$currentCapName/@name"/>, <x:out select="$currentCapName/@iso2Code"/>"
-               autocomplete="off"
-               oninput="searchCapital(this)"
-        />
+        <input id="search" class="search" type="text" value="<x:out select=" $currentCapName/@name "/>, <x:out select="$currentCapName/@iso2Code
+                            "/>" autocomplete="off" oninput="searchCapital(this)"/>
         <div id="auto-complete" class="auto-complete">
             <div id="did-you-mean">Có phải bạn đang tìm:</div>
             <div id="search-result" class="search-result">
@@ -74,7 +71,8 @@
         </div>
         <div id="main" class="main">
             <div class="main-nav">
-                <div id="tab-item-1" class="main-nav-item main-nav-item-active" onclick="setMainNavActive(this, 0, true)">
+                <div id="tab-item-1" class="main-nav-item main-nav-item-active"
+                     onclick="setMainNavActive(this, 0, true)">
                     <div class="main-nav-item-body">
                         <i class="icon ion-md-sunny"></i>
                         Thời tiết
@@ -92,6 +90,13 @@
                     <div class="main-nav-item-body">
                         <i class="icon ion-md-images"></i>
                         Bộ sưu tập
+                    </div>
+                    <div class="main-nav-item-color-footer"></div>
+                </div>
+                <div class="main-nav-item" onclick="openUrlInNewTab('http://localhost:8080/crawlers')">
+                    <div class="main-nav-item-body">
+                        <i class="icon ion-md-bug"></i>
+                        Quản lý bộ cào (dành cho quản trị)
                     </div>
                     <div class="main-nav-item-color-footer"></div>
                 </div>

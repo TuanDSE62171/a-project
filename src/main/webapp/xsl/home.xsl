@@ -122,7 +122,7 @@
         <xsl:for-each select="./*[local-name()='news']">
             <div class="news-event-card">
                 <xsl:attribute name="onclick">
-                    <xsl:text>openNewsPostInOtherBrowserTab('</xsl:text>
+                    <xsl:text>openUrlInNewTab('</xsl:text>
                     <xsl:value-of select="./*[local-name()='postOriginUrl']"/>
                     <xsl:text>');</xsl:text>
                 </xsl:attribute>

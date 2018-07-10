@@ -5,6 +5,7 @@ import portal_xml.portal_xml.entity.jaxb.capital.Capital;
 import portal_xml.portal_xml.entity.jaxb.forecast.Forecast;
 import portal_xml.portal_xml.entity.jaxb.forecast.Forecasts;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
 import portal_xml.portal_xml.utility.XMLUtilities;
 
 import java.sql.Date;
@@ -24,16 +25,16 @@ import static portal_xml.portal_xml.helperfunction.HelperFunction.getSubStringRe
 
 public class ForecastCrawler extends AbstractCrawler {
 
-    public ForecastCrawler(DBService service) {
+    public ForecastCrawler(DBService service, ErrorFileConfig errorFileConfig) {
         this.pageURL = WEATHER_PAGE;
         this.service = service;
         this.capitalBlockingQueue = new LinkedBlockingDeque<>();
+        this.errorFileConfig = errorFileConfig;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void run() {
-        LOGGER.log(INFO, templateInit);
         XMLUtilities utilities = new XMLUtilities();
         Forecasts forecasts = null;
         LocalDate date = null;
@@ -45,28 +46,31 @@ public class ForecastCrawler extends AbstractCrawler {
         String formatedString = "";
         String capitalName = "";
         String countryName = "";
-
         List<Forecast> forecastList = new ArrayList<>();
 
         while (true) {
+            setupLogger();
+            LOGGER.log(INFO, templateStarted);
             int totalProgress;
             try {
-                Capital capital = this.capitalBlockingQueue.take();
+                Capital capital = waitForQueueToContinue(this.capitalBlockingQueue);
+                setupLogger();
                 if(isTerminationFlag(capital)){
                     counter = 1;
                     LOGGER.log(INFO, templateFinished);
+                    this.stop = true;
+                    closeLogger();
                 }
                 totalProgress = (CrawlerManager.capitalSize);
                 while (this.stop) {
-                    LOGGER.log(INFO, templateStopped);
                     waitForSignalToContinue();
-                    LOGGER.log(INFO, templateResumed);
                 }
                 if(isTerminationFlag(capital)){
                     resetProgress();
-                    capital = this.capitalBlockingQueue.take(); // restart after finished
+                    capital = waitForQueueToContinue(this.capitalBlockingQueue); // restart after finished
+                    setupLogger();
                 }
-                LOGGER.log(INFO, "{0}: " + capital.getCountryName() + " " + capital.getName(), crawlerName);
+                LOGGER.log(INFO, capital.getCountryName() + " " + capital.getName());
 
                 capitalName = Normalizer.normalize(capital.getName(), Normalizer.Form.NFD);
                 countryName = Normalizer.normalize(capital.getCountryName(), Normalizer.Form.NFD);
@@ -81,7 +85,7 @@ public class ForecastCrawler extends AbstractCrawler {
 
                 formatedString = String.format(timeAndDatePage, countryName, capitalName);
                 this.pageURL.setUrl(formatedString);
-                LOGGER.log(INFO, "{0}: Attempt: " + formatedString, crawlerName);
+                LOGGER.log(INFO, "Attempt: " + formatedString);
                 resultHTML = crawlHTML(null);
                 utilities.setResult(resultHTML);
 
@@ -98,7 +102,7 @@ public class ForecastCrawler extends AbstractCrawler {
                                     })
                                     , new String[]{"img", "input", "br"});
                 } catch (Exception e1) {
-                    LOGGER.log(WARNING, "{0}: Data for " + capital.getName() + " of " + capital.getCountryName() + " not found", crawlerName);
+                    LOGGER.log(WARNING, "Data for " + capital.getName() + " of " + capital.getCountryName() + " not found");
                 }
                 sb = sb.append(utilities.getResult());
                 utilities.setResult(sb.toString());
@@ -118,11 +122,11 @@ public class ForecastCrawler extends AbstractCrawler {
                             forecast.setForecastDayOfWeek(date.format(DateTimeFormatter.ofPattern("EEEE", VnLocale)));
                             forecastList.add(forecast);
                             service.saveForecast(forecast);
-                            LOGGER.log(INFO, "{0}: forecast for " + capital.getName() + " date: " + Date.valueOf(date) + " saved successful", crawlerName);
+                            LOGGER.log(INFO, "Forecast for " + capital.getName() + " date: " + Date.valueOf(date) + " saved successful");
                             date = date.plusDays(1);
                         }
                     }
-                    LOGGER.log(INFO, "{0}: " + forecasts.getForecast().size() + " record found for capital " + capital.getName() + " of " + capital.getCountryName(), crawlerName);
+                    LOGGER.log(INFO, forecasts.getForecast().size() + " record found for capital " + capital.getName() + " of " + capital.getCountryName());
                 }
                 progress = ((counter++ / totalProgress) * 100);
                 utilities.reset();

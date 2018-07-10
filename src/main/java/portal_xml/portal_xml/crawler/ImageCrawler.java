@@ -5,6 +5,7 @@ import portal_xml.portal_xml.entity.jaxb.capital.Capital;
 import portal_xml.portal_xml.entity.jaxb.image.Image;
 import portal_xml.portal_xml.entity.jaxb.image.Images;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
 import portal_xml.portal_xml.utility.XMLUtilities;
 
 import javax.imageio.ImageIO;
@@ -24,44 +25,47 @@ import static portal_xml.portal_xml.helperfunction.HelperFunction.getSubStringRe
 
 public class ImageCrawler extends AbstractCrawler {
 
-    public ImageCrawler(DBService service) {
+    public ImageCrawler(DBService service, ErrorFileConfig errorFileConfig) {
         this.service = service;
         this.pageURL = IMAGE_PAGE;
         this.capitalBlockingQueue = new LinkedBlockingDeque<>();
+        this.errorFileConfig = errorFileConfig;
     }
 
     @Override
     public void run() {
-        LOGGER.log(INFO, templateInit);
         XMLUtilities utilities = new XMLUtilities();
         String imagePage = IMAGE_PAGE.getUrl();
 
         String formattedString = "";
-
         int totalProgress;
         double counter = 1;
         while (true) {
+            setupLogger();
+            LOGGER.log(INFO, templateStarted);
             try {
-                Capital capital = this.capitalBlockingQueue.take();
+                Capital capital = waitForQueueToContinue(this.capitalBlockingQueue);
+                setupLogger();
                 if (isTerminationFlag(capital)) {
                     counter = 1;
+                    this.stop = true;
                     LOGGER.log(INFO, templateFinished);
+                    closeLogger();
                 }
                 totalProgress = CrawlerManager.capitalSize;
                 while (this.stop) {
-                    LOGGER.log(INFO, templateStopped);
                     waitForSignalToContinue();
-                    LOGGER.log(INFO, templateResumed);
                 }
                 if(isTerminationFlag(capital)){
                     resetProgress();
-                    capital = this.capitalBlockingQueue.take(); // restart after finished
+                    capital = waitForQueueToContinue(this.capitalBlockingQueue); // restart after finished
+                    setupLogger();
                 }
                 formattedString = String.format(imagePage,
                         capital.getName().replaceAll("\\s+", "-"),
                         capital.getCountryName().replaceAll("\\s+", "-"));
                 this.pageURL.setUrl(formattedString);
-                LOGGER.log(INFO, "{0}: Crawling images for " + capital.getName() + " of " + capital.getCountryName(), crawlerName);
+                LOGGER.log(INFO, "Crawling images for " + capital.getName() + " of " + capital.getCountryName());
                 String resultHTML = crawlHTML(null);
 
                 utilities.setResult(resultHTML);
@@ -76,7 +80,7 @@ public class ImageCrawler extends AbstractCrawler {
                             .unmarshal(Images.class, "xsd/image.xsd");
 
                 } catch (Exception e) {
-                    LOGGER.log(WARNING, "{0}: Images not found for url: " + formattedString, crawlerName);
+                    LOGGER.log(WARNING, "Images not found for url: " + formattedString);
                 }
 
                 if (images != null && !images.getImage().isEmpty()) {
@@ -103,7 +107,7 @@ public class ImageCrawler extends AbstractCrawler {
 
                     filtered.forEach(image -> {
                         service.saveImage(image);
-                        LOGGER.log(INFO, "{0}: image saved successful", crawlerName);
+                        LOGGER.log(INFO, "Image saved successful");
                     });
                 }
                 progress = ((counter++ / totalProgress) * 100);

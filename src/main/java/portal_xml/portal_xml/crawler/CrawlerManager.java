@@ -3,6 +3,7 @@ package portal_xml.portal_xml.crawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -15,6 +16,8 @@ public class CrawlerManager {
 
     public DBService service;
 
+    public ErrorFileConfig errorFileConfig;
+
     private ExecutorService es;
 
     public static List<AbstractCrawler> crawlerList;
@@ -22,8 +25,9 @@ public class CrawlerManager {
     public static int capitalSize;
 
     @Autowired
-    CrawlerManager(DBService service) {
+    CrawlerManager(DBService service, ErrorFileConfig errorFileConfig) {
         this.service = service;
+        this.errorFileConfig = errorFileConfig;
         init();
     }
 
@@ -31,7 +35,7 @@ public class CrawlerManager {
     public void init() {
         if (!started) {
 
-            AbstractCrawler[] crawlers = CrawlerFactory.newInstance(service, new Class[]{
+            AbstractCrawler[] crawlers = CrawlerFactory.newInstance(service, errorFileConfig, new Class[]{
                     CapitalCrawler.class,
                     ForecastCrawler.class,
                     NewsCrawler.class,

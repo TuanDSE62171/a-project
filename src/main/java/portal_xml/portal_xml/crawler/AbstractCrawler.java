@@ -3,6 +3,8 @@ package portal_xml.portal_xml.crawler;
 import portal_xml.portal_xml.entity.jaxb.capital.Capital;
 import portal_xml.portal_xml.enumpage.CrawlPage;
 import portal_xml.portal_xml.service.DBService;
+import portal_xml.portal_xml.utility.ErrorFileConfig;
+import portal_xml.portal_xml.utility.TokenLogFormatter;
 
 import java.io.*;
 import java.net.URL;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.*;
@@ -20,9 +23,13 @@ public abstract class AbstractCrawler implements Runnable {
 
     protected final Logger LOGGER = Logger.getLogger(this.getClass().getSimpleName());
 
+    protected ErrorFileConfig errorFileConfig;
+
+    protected FileHandler errorFileHandler = null;
+
     protected String crawlerName = String.format("%s", this.getClass().getSimpleName());
 
-    protected String templateInit = String.format("Starting %s", crawlerName);
+    protected String templateStarted = String.format("Starting %s", crawlerName);
 
     protected String templateFinished = String.format("Finished %s", crawlerName);
 
@@ -39,6 +46,8 @@ public abstract class AbstractCrawler implements Runnable {
     protected String templateStopped = String.format("%s stopped", crawlerName);
 
     protected String templateResumed = String.format("%s resumed", crawlerName);
+
+    protected String templateWaiting = String.format("%s waiting for queue", crawlerName);
 
     protected CrawlPage pageURL;
 
@@ -63,9 +72,9 @@ public abstract class AbstractCrawler implements Runnable {
             while ((inputLine = br.readLine()) != null) {
                 result = result.append(inputLine + "\n");
             }
-            LOGGER.log(INFO, "{0}: Crawl HTML done", crawlerName);
+            LOGGER.log(INFO, "Crawl HTML done");
         } catch (IOException ioe) {
-            LOGGER.log(WARNING, "{0}: Crawl HTML failed", crawlerName);
+            LOGGER.log(WARNING, "Crawl HTML failed");
         } finally {
             try {
                 if (br != null) {
@@ -102,6 +111,8 @@ public abstract class AbstractCrawler implements Runnable {
     }
 
     protected void waitForSignalToContinue() {
+        LOGGER.log(INFO, templateStopped);
+        closeLogger();
         synchronized (this) {
             try {
                 this.wait();
@@ -109,14 +120,45 @@ public abstract class AbstractCrawler implements Runnable {
                 e.printStackTrace();
             }
         }
+        LOGGER.log(INFO, templateResumed);
+        setupLogger();
     }
 
-    protected boolean isTerminationFlag(Capital capital){
+    protected <T> T waitForQueueToContinue(BlockingQueue<T> queue) throws InterruptedException {
+        if (queue.peek() == null) {
+            LOGGER.log(INFO, templateWaiting);
+            closeLogger();
+            return queue.take();
+        }
+        return queue.take();
+    }
+
+    protected boolean isTerminationFlag(Capital capital) {
         return (capital.getName().equalsIgnoreCase(TERMINATION_MESSAGE));
     }
 
-    protected void resetProgress(){
+    protected void resetProgress() {
         this.stop = true;
         this.progress = 0;
+    }
+
+    protected void setupLogger() {
+        if (this.errorFileHandler == null) {
+            try {
+                this.errorFileHandler = new FileHandler("logs/" + this.crawlerName + errorFileConfig.getErrorFilePath(), true);
+                this.errorFileHandler.setFormatter(new TokenLogFormatter());
+                this.errorFileHandler.setEncoding("UTF-8");
+                LOGGER.addHandler(this.errorFileHandler);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void closeLogger() {
+        if (this.errorFileHandler != null) {
+            this.errorFileHandler.close();
+            this.errorFileHandler = null;
+        }
     }
 }

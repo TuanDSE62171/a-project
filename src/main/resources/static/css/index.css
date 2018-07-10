@@ -196,9 +196,9 @@ html, body {
 .main-nav {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
-    width: 50%;
+    width: 65%;
     display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr;
+    grid-template-columns: 1.5fr 2fr 2fr 3.5fr;
     grid-template-rows: auto;
     z-index: 1;
 }
@@ -252,14 +252,16 @@ html, body {
     background-color: #E5F297;
 }
 
-
 .main-nav-item:nth-child(2) .main-nav-item-color-footer {
     background-color: #9191F0;
 }
 
-
 .main-nav-item:nth-child(3) .main-nav-item-color-footer {
     background-color: #FE9A76;
+}
+
+.main-nav-item:nth-child(4) .main-nav-item-color-footer {
+    background-color: #f65c5f;
 }
 
 .main-nav-item-color-footer {

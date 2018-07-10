@@ -1,16 +1,12 @@
 package portal_xml.portal_xml.utility;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContext;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.*;
 
 import static java.util.logging.Level.*;
@@ -30,13 +26,6 @@ public class RandomTokenManager {
     public RandomTokenManager(ServletContext context, TokenFileConfig tokenFileConfig){
         this.context = context;
         this.fileConfig = tokenFileConfig;
-        try {
-            fh = new FileHandler(this.fileConfig.getTokenFilePath());
-            fh.setFormatter(new CustomFormatter());
-            LOGGER.addHandler(fh);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         generateToken();
     }
 
@@ -45,24 +34,23 @@ public class RandomTokenManager {
     // every hour * * * ? * *
     @Scheduled(cron = "0 0 * ? * SUN")
     public void generateToken(){
-        Date date = new Date();
+        try {
+            fh = new FileHandler("logs/"+this.fileConfig.getTokenFilePath(), true);
+            fh.setFormatter(new TokenLogFormatter());
+            fh.setEncoding("UTF-8");
+            LOGGER.addHandler(fh);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String randomToken = RandomStringUtils.randomAlphanumeric(15);
         this.context.setAttribute("TOKEN", randomToken);
-        logToFile(randomToken, date);
+        logToFile(randomToken);
     }
 
-    private void logToFile(String token, Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("[dd-MM-yyy HH:mm:ss]");
-        String message = String.format("%s: token set to \"%s\"", sdf.format(date), token);
+    private void logToFile(String token){
+        String message = String.format("token set to \"%s\"", token);
         LOGGER.log(INFO, message);
-    }
-
-    private class CustomFormatter extends Formatter{
-
-        @Override
-        public String format(LogRecord record) {
-            return record.getLoggerName()+"-"+record.getMessage();
-        }
+        this.fh.close();
     }
 
 }

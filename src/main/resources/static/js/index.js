@@ -5,7 +5,7 @@ var HEADER_ACCEPT = { key: "Accept", value: "application/xml" };
 window.onload = function () {
 
     images = parse(images);
-    getImages({responseXML: images});
+    getImages({ responseXML: images });
 
     currentCapital = parse(currentCapital);
 
@@ -162,17 +162,23 @@ function getImages(xml) {
     var galleryTab = document.getElementById("gallery-tab");
     backgrounds = [];
 
-    if(urls.length !== 0){
+    if (urls.length !== 0) {
         while (galleryTab.firstElementChild) {
             galleryTab.removeChild(galleryTab.firstElementChild);
         }
     }
-    
+
 
     for (var i = 0; i < urls.length; i++) {
         var url = urls[i].childNodes[0].textContent;
         var galleryItem = prototype.cloneNode(true);
         galleryItem.firstElementChild.style.backgroundImage = "url('" + url + "')";
+        galleryItem.onclick = (function(imageUrl) {
+            return function(){
+                setBackground(imageUrl);
+                triggerBackgroundAnimation();
+            };
+        })(url);
         galleryTab.appendChild(galleryItem);
         backgrounds.push(url);
     }
@@ -198,7 +204,7 @@ function getNews(xml) {
         var date = news.getElementsByTagName("date")[0].textContent;
         date = date.substring(6).replace("-", "/");
         var title = news.getElementsByTagName("title")[0].textContent;
-        card.setAttribute("onclick", "openNewsPostInOtherBrowserTab('" + postOriginUrl + "');");
+        card.setAttribute("onclick", "openUrlInNewTab('" + postOriginUrl + "');");
         card.getElementsByClassName("event-card-image")[0].setAttribute("style", "background-image: url('" + postImageUrl + "');");
         card.getElementsByClassName("event-card-date")[0].firstElementChild.innerHTML = date;
         card.getElementsByClassName("event-card-description")[0].firstElementChild.innerHTML = title;
@@ -378,7 +384,7 @@ function getInfoCapital(code, strVal) {
 
 }
 
-function openNewsPostInOtherBrowserTab(url) {
+function openUrlInNewTab(url) {
     var tab = window.open(url, "_blank");
     tab.focus();
 }

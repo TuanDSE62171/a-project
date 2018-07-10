@@ -1,0 +1,210 @@
+[10-07-2018 23:36:10] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:36:10] INFO --- CapitalCrawler: CapitalCrawler stopped
+[10-07-2018 23:36:38] INFO --- CapitalCrawler: Crawl HTML done
+[10-07-2018 23:36:38] INFO --- CapitalCrawler: capital Kabul Code: AF saved successful
+[10-07-2018 23:36:39] INFO --- CapitalCrawler: capital Tirana Code: AL saved successful
+[10-07-2018 23:36:40] INFO --- CapitalCrawler: capital Algiers Code: DZ saved successful
+[10-07-2018 23:36:41] INFO --- CapitalCrawler: capital Andorra la Vella Code: AD saved successful
+[10-07-2018 23:36:42] INFO --- CapitalCrawler: capital Luanda Code: AO saved successful
+[10-07-2018 23:36:43] INFO --- CapitalCrawler: capital St. John's Code: AG saved successful
+[10-07-2018 23:36:44] INFO --- CapitalCrawler: capital Buenos Aires Code: AR saved successful
+[10-07-2018 23:36:45] INFO --- CapitalCrawler: capital Yerevan Code: AM saved successful
+[10-07-2018 23:36:46] INFO --- CapitalCrawler: capital Canberra Code: AU saved successful
+[10-07-2018 23:36:47] INFO --- CapitalCrawler: capital Vienna Code: AT saved successful
+[10-07-2018 23:36:48] INFO --- CapitalCrawler: capital Baku Code: AZ saved successful
+[10-07-2018 23:36:49] INFO --- CapitalCrawler: capital Nassau Code: BS saved successful
+[10-07-2018 23:36:50] INFO --- CapitalCrawler: capital Manama Code: BH saved successful
+[10-07-2018 23:36:51] INFO --- CapitalCrawler: capital Dhaka Code: BD saved successful
+[10-07-2018 23:36:52] INFO --- CapitalCrawler: capital Bridgetown Code: BB saved successful
+[10-07-2018 23:36:53] INFO --- CapitalCrawler: capital Minsk Code: BY saved successful
+[10-07-2018 23:36:54] INFO --- CapitalCrawler: capital Brussels Code: BE saved successful
+[10-07-2018 23:36:55] INFO --- CapitalCrawler: capital Belmopan Code: BZ saved successful
+[10-07-2018 23:36:56] INFO --- CapitalCrawler: capital Porto Novo Code: BJ saved successful
+[10-07-2018 23:36:57] INFO --- CapitalCrawler: capital Thimphu Code: BT saved successful
+[10-07-2018 23:36:58] INFO --- CapitalCrawler: capital Sucre Code: BO saved successful
+[10-07-2018 23:36:59] INFO --- CapitalCrawler: capital Sarajevo Code: BA saved successful
+[10-07-2018 23:37:00] INFO --- CapitalCrawler: capital Gaborone Code: BW saved successful
+[10-07-2018 23:37:01] INFO --- CapitalCrawler: capital Brasilia Code: BR saved successful
+[10-07-2018 23:37:02] INFO --- CapitalCrawler: capital Bandar Seri Begawan Code: BN saved successful
+[10-07-2018 23:37:03] INFO --- CapitalCrawler: capital Sofia Code: BG saved successful
+[10-07-2018 23:37:04] INFO --- CapitalCrawler: capital Ouagadougou Code: BF saved successful
+[10-07-2018 23:37:05] INFO --- CapitalCrawler: capital Bujumbura Code: BI saved successful
+[10-07-2018 23:37:06] INFO --- CapitalCrawler: capital Phnom Penh Code: KH saved successful
+[10-07-2018 23:37:07] INFO --- CapitalCrawler: capital Yaoundé Code: CM saved successful
+[10-07-2018 23:37:08] INFO --- CapitalCrawler: capital Ottawa Code: CA saved successful
+[10-07-2018 23:37:09] INFO --- CapitalCrawler: capital Praia Code: CV saved successful
+[10-07-2018 23:37:10] INFO --- CapitalCrawler: capital Bangui Code: CF saved successful
+[10-07-2018 23:37:11] INFO --- CapitalCrawler: capital N'Djamena Code: TD saved successful
+[10-07-2018 23:37:12] INFO --- CapitalCrawler: capital Santiago Code: CL saved successful
+[10-07-2018 23:37:13] INFO --- CapitalCrawler: capital Beijing Code: CN saved successful
+[10-07-2018 23:37:14] INFO --- CapitalCrawler: capital Bogota Code: CO saved successful
+[10-07-2018 23:37:15] INFO --- CapitalCrawler: capital Moroni Code: KM saved successful
+[10-07-2018 23:37:16] INFO --- CapitalCrawler: capital San José Code: CR saved successful
+[10-07-2018 23:37:17] INFO --- CapitalCrawler: capital Zagreb Code: HR saved successful
+[10-07-2018 23:37:18] INFO --- CapitalCrawler: capital Havana Code: CU saved successful
+[10-07-2018 23:37:19] INFO --- CapitalCrawler: capital Nicosia Code: CY saved successful
+[10-07-2018 23:37:20] INFO --- CapitalCrawler: capital Prague Code: CZ saved successful
+[10-07-2018 23:37:21] INFO --- CapitalCrawler: capital Kinshasa Code: CD saved successful
+[10-07-2018 23:37:22] INFO --- CapitalCrawler: capital Copenagen Code: DK saved successful
+[10-07-2018 23:37:23] INFO --- CapitalCrawler: capital Djibouti Code: DJ saved successful
+[10-07-2018 23:37:24] INFO --- CapitalCrawler: capital Roseau Code: DM saved successful
+[10-07-2018 23:37:25] INFO --- CapitalCrawler: capital Santo Domingo Code: DO saved successful
+[10-07-2018 23:37:26] INFO --- CapitalCrawler: capital Dili Code: TL saved successful
+[10-07-2018 23:37:27] INFO --- CapitalCrawler: capital Quito Code: EC saved successful
+[10-07-2018 23:37:28] INFO --- CapitalCrawler: capital Cairo Code: EG saved successful
+[10-07-2018 23:37:29] INFO --- CapitalCrawler: capital San Salvador Code: SV saved successful
+[10-07-2018 23:37:30] INFO --- CapitalCrawler: capital Malabo Code: GQ saved successful
+[10-07-2018 23:37:31] INFO --- CapitalCrawler: capital Asmara Code: ER saved successful
+[10-07-2018 23:37:32] INFO --- CapitalCrawler: capital Tallinn Code: EE saved successful
+[10-07-2018 23:37:33] INFO --- CapitalCrawler: capital Addis Ababa Code: ET saved successful
+[10-07-2018 23:37:34] INFO --- CapitalCrawler: capital Suva Code: FJ saved successful
+[10-07-2018 23:37:35] INFO --- CapitalCrawler: capital Helsinki Code: FI saved successful
+[10-07-2018 23:37:36] INFO --- CapitalCrawler: capital Paris Code: FR saved successful
+[10-07-2018 23:37:37] INFO --- CapitalCrawler: capital Libreville Code: GA saved successful
+[10-07-2018 23:37:38] INFO --- CapitalCrawler: capital Banjul Code: GM saved successful
+[10-07-2018 23:37:39] INFO --- CapitalCrawler: capital Tbilisi Code: GE saved successful
+[10-07-2018 23:37:40] INFO --- CapitalCrawler: capital Berlin Code: DE saved successful
+[10-07-2018 23:37:41] INFO --- CapitalCrawler: capital Accra Code: GH saved successful
+[10-07-2018 23:37:42] INFO --- CapitalCrawler: capital Athens Code: GR saved successful
+[10-07-2018 23:37:43] INFO --- CapitalCrawler: capital St. George's Code: GD saved successful
+[10-07-2018 23:37:44] INFO --- CapitalCrawler: capital Guatemala City Code: GT saved successful
+[10-07-2018 23:37:45] INFO --- CapitalCrawler: capital Conakry Code: GN saved successful
+[10-07-2018 23:37:46] INFO --- CapitalCrawler: capital Bissau Code: GW saved successful
+[10-07-2018 23:37:47] INFO --- CapitalCrawler: capital Georgetown Code: GY saved successful
+[10-07-2018 23:37:48] INFO --- CapitalCrawler: capital Port-au-Prince Code: HT saved successful
+[10-07-2018 23:37:49] INFO --- CapitalCrawler: capital Tegucigalpa Code: HN saved successful
+[10-07-2018 23:37:50] INFO --- CapitalCrawler: capital Budapest Code: HU saved successful
+[10-07-2018 23:37:51] INFO --- CapitalCrawler: capital Reykjavík Code: IS saved successful
+[10-07-2018 23:37:52] INFO --- CapitalCrawler: capital New Delhi Code: IN saved successful
+[10-07-2018 23:37:53] INFO --- CapitalCrawler: capital Jakarta Code: ID saved successful
+[10-07-2018 23:37:54] INFO --- CapitalCrawler: capital Tehran Code: IR saved successful
+[10-07-2018 23:37:55] INFO --- CapitalCrawler: capital Baghdad Code: IQ saved successful
+[10-07-2018 23:37:56] INFO --- CapitalCrawler: capital Dublin Code: IE saved successful
+[10-07-2018 23:37:57] INFO --- CapitalCrawler: capital Jerusalem Code: IL saved successful
+[10-07-2018 23:37:58] INFO --- CapitalCrawler: capital Rome Code: IT saved successful
+[10-07-2018 23:37:59] INFO --- CapitalCrawler: capital Yamoussoukro Code: CI saved successful
+[10-07-2018 23:38:00] INFO --- CapitalCrawler: capital Kingston Code: JM saved successful
+[10-07-2018 23:38:01] INFO --- CapitalCrawler: capital Tokyo Code: JP saved successful
+[10-07-2018 23:38:02] INFO --- CapitalCrawler: capital Amman Code: JO saved successful
+[10-07-2018 23:38:03] INFO --- CapitalCrawler: capital Astana Code: KZ saved successful
+[10-07-2018 23:38:04] INFO --- CapitalCrawler: capital Nairobi Code: KE saved successful
+[10-07-2018 23:38:05] INFO --- CapitalCrawler: capital Tarawa Code: KI saved successful
+[10-07-2018 23:38:06] INFO --- CapitalCrawler: capital Pyongyang Code: KP saved successful
+[10-07-2018 23:38:07] INFO --- CapitalCrawler: capital Seoul Code: KR saved successful
+[10-07-2018 23:38:08] INFO --- CapitalCrawler: capital Kuwait City Code: KW saved successful
+[10-07-2018 23:38:09] INFO --- CapitalCrawler: capital Bishkek Code: KG saved successful
+[10-07-2018 23:38:10] INFO --- CapitalCrawler: capital Vientiane Code: LA saved successful
+[10-07-2018 23:38:11] INFO --- CapitalCrawler: capital Riga Code: LV saved successful
+[10-07-2018 23:38:12] INFO --- CapitalCrawler: capital Beirut Code: LB saved successful
+[10-07-2018 23:38:13] INFO --- CapitalCrawler: capital Maseru Code: LS saved successful
+[10-07-2018 23:38:14] INFO --- CapitalCrawler: capital Monrovia Code: LR saved successful
+[10-07-2018 23:38:15] INFO --- CapitalCrawler: capital Tripoli Code: LY saved successful
+[10-07-2018 23:38:16] INFO --- CapitalCrawler: capital Vaduz Code: LI saved successful
+[10-07-2018 23:38:17] INFO --- CapitalCrawler: capital Vilnius Code: LT saved successful
+[10-07-2018 23:38:18] INFO --- CapitalCrawler: capital Luxembourg Code: LU saved successful
+[10-07-2018 23:38:19] INFO --- CapitalCrawler: capital Skopje Code: MK saved successful
+[10-07-2018 23:38:20] INFO --- CapitalCrawler: capital Antananarivo Code: MG saved successful
+[10-07-2018 23:38:21] INFO --- CapitalCrawler: capital Lilongwe Code: MW saved successful
+[10-07-2018 23:38:22] INFO --- CapitalCrawler: capital Kuala Lumpur Code: MY saved successful
+[10-07-2018 23:38:23] INFO --- CapitalCrawler: capital Malé Code: MV saved successful
+[10-07-2018 23:38:24] INFO --- CapitalCrawler: capital Bamako Code: ML saved successful
+[10-07-2018 23:38:25] INFO --- CapitalCrawler: capital Valletta Code: MT saved successful
+[10-07-2018 23:38:26] INFO --- CapitalCrawler: capital Majuro Code: MH saved successful
+[10-07-2018 23:38:27] INFO --- CapitalCrawler: capital Nouakchott Code: MR saved successful
+[10-07-2018 23:38:28] INFO --- CapitalCrawler: capital Port Louis Code: MU saved successful
+[10-07-2018 23:38:29] INFO --- CapitalCrawler: capital Mexico City Code: MX saved successful
+[10-07-2018 23:38:30] INFO --- CapitalCrawler: capital Palikir Code: FM saved successful
+[10-07-2018 23:38:31] INFO --- CapitalCrawler: capital Chisinau Code: MD saved successful
+[10-07-2018 23:38:32] INFO --- CapitalCrawler: capital Monaco Code: MC saved successful
+[10-07-2018 23:38:33] INFO --- CapitalCrawler: capital Ulaanbaatar Code: MN saved successful
+[10-07-2018 23:38:34] INFO --- CapitalCrawler: capital Podgorica Code: ME saved successful
+[10-07-2018 23:38:35] INFO --- CapitalCrawler: capital Rabat Code: MA saved successful
+[10-07-2018 23:38:36] INFO --- CapitalCrawler: capital Maputo Code: MZ saved successful
+[10-07-2018 23:38:37] INFO --- CapitalCrawler: capital Naypyidaw Code: MM saved successful
+[10-07-2018 23:38:38] INFO --- CapitalCrawler: capital Windhoek Code: NA saved successful
+[10-07-2018 23:38:39] INFO --- CapitalCrawler: capital Yaren Code: NR saved successful
+[10-07-2018 23:38:40] INFO --- CapitalCrawler: capital Kathmandu Code: NP saved successful
+[10-07-2018 23:38:41] INFO --- CapitalCrawler: capital Amsterdam Code: NL saved successful
+[10-07-2018 23:38:42] INFO --- CapitalCrawler: capital Wellington Code: NZ saved successful
+[10-07-2018 23:38:43] INFO --- CapitalCrawler: capital Managua Code: NI saved successful
+[10-07-2018 23:38:44] INFO --- CapitalCrawler: capital Niamey Code: NE saved successful
+[10-07-2018 23:38:45] INFO --- CapitalCrawler: capital Abuja Code: NG saved successful
+[10-07-2018 23:38:46] INFO --- CapitalCrawler: capital Oslo Code: NO saved successful
+[10-07-2018 23:38:47] INFO --- CapitalCrawler: capital Muscat Code: OM saved successful
+[10-07-2018 23:38:48] INFO --- CapitalCrawler: capital Islamabad Code: PK saved successful
+[10-07-2018 23:38:49] INFO --- CapitalCrawler: capital Melekeok Code: PW saved successful
+[10-07-2018 23:38:50] INFO --- CapitalCrawler: capital East Jerusalem Code: PS saved successful
+[10-07-2018 23:38:51] INFO --- CapitalCrawler: capital Panama City Code: PA saved successful
+[10-07-2018 23:38:52] INFO --- CapitalCrawler: capital Port Moresby Code: PG saved successful
+[10-07-2018 23:38:53] INFO --- CapitalCrawler: capital Asunción Code: PY saved successful
+[10-07-2018 23:38:54] INFO --- CapitalCrawler: capital Lima Code: PE saved successful
+[10-07-2018 23:38:55] INFO --- CapitalCrawler: capital Manila Code: PH saved successful
+[10-07-2018 23:38:56] INFO --- CapitalCrawler: capital Warsaw Code: PL saved successful
+[10-07-2018 23:38:57] INFO --- CapitalCrawler: capital Lisbon Code: PT saved successful
+[10-07-2018 23:38:58] INFO --- CapitalCrawler: capital Doha Code: QA saved successful
+[10-07-2018 23:38:59] INFO --- CapitalCrawler: capital Brazzaville Code: CG saved successful
+[10-07-2018 23:39:00] INFO --- CapitalCrawler: capital Bucharest Code: RO saved successful
+[10-07-2018 23:39:01] INFO --- CapitalCrawler: capital Moscow Code: RU saved successful
+[10-07-2018 23:39:02] INFO --- CapitalCrawler: capital Kigali Code: RW saved successful
+[10-07-2018 23:39:03] INFO --- CapitalCrawler: capital Basseterre Code: KN saved successful
+[10-07-2018 23:39:04] INFO --- CapitalCrawler: capital Castries Code: LC saved successful
+[10-07-2018 23:39:05] INFO --- CapitalCrawler: capital Kingstown Code: VC saved successful
+[10-07-2018 23:39:06] INFO --- CapitalCrawler: capital Apia Code: WS saved successful
+[10-07-2018 23:39:07] INFO --- CapitalCrawler: capital San Marino Code: SM saved successful
+[10-07-2018 23:39:08] INFO --- CapitalCrawler: capital São Tomé Code: ST saved successful
+[10-07-2018 23:39:09] INFO --- CapitalCrawler: capital Riyadh Code: SA saved successful
+[10-07-2018 23:39:11] INFO --- CapitalCrawler: capital Dakar Code: SN saved successful
+[10-07-2018 23:39:12] INFO --- CapitalCrawler: capital Belgrade Code: RS saved successful
+[10-07-2018 23:39:13] INFO --- CapitalCrawler: capital Victoria Code: SC saved successful
+[10-07-2018 23:39:14] INFO --- CapitalCrawler: capital Freetown Code: SL saved successful
+[10-07-2018 23:39:15] INFO --- CapitalCrawler: capital Singapore Code: SG saved successful
+[10-07-2018 23:39:16] INFO --- CapitalCrawler: capital Bratislava Code: SK saved successful
+[10-07-2018 23:39:17] INFO --- CapitalCrawler: capital Ljubljana Code: SI saved successful
+[10-07-2018 23:39:18] INFO --- CapitalCrawler: capital Honiara Code: SB saved successful
+[10-07-2018 23:39:19] INFO --- CapitalCrawler: capital Mogadishu Code: SO saved successful
+[10-07-2018 23:39:20] INFO --- CapitalCrawler: capital Pretoria Code: ZA saved successful
+[10-07-2018 23:39:21] INFO --- CapitalCrawler: capital Juba Code: SS saved successful
+[10-07-2018 23:39:22] INFO --- CapitalCrawler: capital Madrid Code: ES saved successful
+[10-07-2018 23:39:23] INFO --- CapitalCrawler: capital Sri Jayawardenapura Kotte Code: LK saved successful
+[10-07-2018 23:39:24] INFO --- CapitalCrawler: capital Khartoum Code: SD saved successful
+[10-07-2018 23:39:25] INFO --- CapitalCrawler: capital Paramaribo Code: SR saved successful
+[10-07-2018 23:39:26] INFO --- CapitalCrawler: capital Mbabane Code: SZ saved successful
+[10-07-2018 23:39:27] INFO --- CapitalCrawler: capital Stockholm Code: SE saved successful
+[10-07-2018 23:39:28] INFO --- CapitalCrawler: capital Bern Code: CH saved successful
+[10-07-2018 23:39:29] INFO --- CapitalCrawler: capital Damascus Code: SY saved successful
+[10-07-2018 23:39:30] INFO --- CapitalCrawler: capital Taipei Code: TW saved successful
+[10-07-2018 23:39:31] INFO --- CapitalCrawler: capital Dushanbe Code: TJ saved successful
+[10-07-2018 23:39:32] INFO --- CapitalCrawler: capital Dodoma Code: TZ saved successful
+[10-07-2018 23:39:33] INFO --- CapitalCrawler: capital Bangkok Code: TH saved successful
+[10-07-2018 23:39:34] INFO --- CapitalCrawler: capital Lomé Code: TG saved successful
+[10-07-2018 23:39:35] INFO --- CapitalCrawler: capital Nukualofa Code: TO saved successful
+[10-07-2018 23:39:36] INFO --- CapitalCrawler: capital Port of Spain Code: TT saved successful
+[10-07-2018 23:39:37] INFO --- CapitalCrawler: capital Tunis Code: TN saved successful
+[10-07-2018 23:39:38] INFO --- CapitalCrawler: capital Ankara Code: TR saved successful
+[10-07-2018 23:39:39] INFO --- CapitalCrawler: capital Ashgabat Code: TM saved successful
+[10-07-2018 23:39:40] INFO --- CapitalCrawler: capital Funafuti Code: TV saved successful
+[10-07-2018 23:39:41] INFO --- CapitalCrawler: capital Kampala Code: UG saved successful
+[10-07-2018 23:39:42] INFO --- CapitalCrawler: capital Kiev Code: UA saved successful
+[10-07-2018 23:39:43] INFO --- CapitalCrawler: capital Abu Dhabi Code: AE saved successful
+[10-07-2018 23:39:44] INFO --- CapitalCrawler: capital London Code: GB saved successful
+[10-07-2018 23:39:45] INFO --- CapitalCrawler: capital Washington D.C. Code: US saved successful
+[10-07-2018 23:39:46] INFO --- CapitalCrawler: capital Montevideo Code: UY saved successful
+[10-07-2018 23:39:47] INFO --- CapitalCrawler: capital Tashkent Code: UZ saved successful
+[10-07-2018 23:39:48] INFO --- CapitalCrawler: capital Port Vila Code: VU saved successful
+[10-07-2018 23:39:49] INFO --- CapitalCrawler: capital Vatican City Code: VA saved successful
+[10-07-2018 23:39:50] INFO --- CapitalCrawler: capital Caracas Code: VE saved successful
+[10-07-2018 23:39:51] INFO --- CapitalCrawler: capital Hanoi Code: VN saved successful
+[10-07-2018 23:39:52] INFO --- CapitalCrawler: capital Sana'a Code: YE saved successful
+[10-07-2018 23:39:53] INFO --- CapitalCrawler: capital Lusaka Code: ZM saved successful
+[10-07-2018 23:39:54] INFO --- CapitalCrawler: capital Harare Code: ZW saved successful
+[10-07-2018 23:39:55] INFO --- CapitalCrawler: Finished CapitalCrawler
+[10-07-2018 23:39:55] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:39:55] INFO --- CapitalCrawler: CapitalCrawler stopped
+[10-07-2018 23:51:47] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:51:47] INFO --- CapitalCrawler: CapitalCrawler stopped
+[10-07-2018 23:54:02] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:54:02] INFO --- CapitalCrawler: CapitalCrawler stopped
+[10-07-2018 23:57:19] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:57:19] INFO --- CapitalCrawler: CapitalCrawler stopped
+[10-07-2018 23:59:18] INFO --- CapitalCrawler: Starting CapitalCrawler
+[10-07-2018 23:59:18] INFO --- CapitalCrawler: CapitalCrawler stopped
